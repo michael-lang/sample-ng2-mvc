@@ -1,0 +1,35 @@
+{
+	"version": "1.0.0",
+	"name": "asp.net",
+  "private": true,
+  "scripts": {
+    "postinstall": "typings install",
+    "typings": "typings"
+  },
+  "dependencies": {
+    "@angular/common": "~2.1.0",
+    "@angular/compiler": "~2.1.0",
+    "@angular/core": "~2.1.0",
+    "@angular/forms": "~2.1.0",
+    "@angular/http": "~2.1.0",
+    "@angular/platform-browser": "~2.1.0",
+    "@angular/platform-browser-dynamic": "~2.1.0",
+    "@angular/router": "~3.1.0",
+    "@angular/upgrade": "~2.1.0",
+    "angular-in-memory-web-api": "~0.1.5",
+    "core-js": "^2.4.1",
+    "systemjs": "^0.19.42",
+    "zone.js": "^0.7.6"
+  },
+  "devDependencies": {
+    "typescript": "^2.1.5",
+    "typings": "^2.1.0",
+    "path": "^0.12.7",
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-typescript": "^3.1.4",
+    "gulp-tsc": "^1.2.6",
+    "gulp-sass": "^3.1.0"
+  }
+}
