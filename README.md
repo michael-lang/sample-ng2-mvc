@@ -1,11 +1,11 @@
 # sample-ng2-mvc
 An exploration of a few techniques to create an Angular2 application inside Visual Studio Community (or Pro), leveraging NPM and Gulp.
 
-## requirements
+## Requirements
 Visual Studio Community edition with Update 3 (14.0.25431.01 or later).
 Open acccess to NPM and NuGet to restore packages.
 
-## setup
+## Setup
 This project was inspired by Mithun Pattankar at http://www.mithunvp.com/using-angular-2-asp-net-mvc-5-visual-studio/
  * also see the repo: https://github.com/mithunvp/ng2Mvc5Demo
 
@@ -45,4 +45,17 @@ The following instructions document the steps taken to create this project.
 6. Build and run your web project (must be the startup project - shown in bold, then press run in the toolbar).
 	You will see the clean-libs task run in TRE, then 'dist-libs' before the projects build, and then 'build' after the class library builds.
 
+## Create your back-end model and API
+This step is not necassarily part of the angular project work, and may be supplied by another team.  
+Creation of C# code is beyondd the scope of explanation here, however a contrived example is included.
+Even if another team is working on the back-end, you may need to create an interim front end mock for your anticipated data.
 
+1. Create back-end model classes (or temporary mocks)
+2. Create a Web API to interact with the data using typical C# MVC.Net techniques.
+3. Create front end typescript classes to match the API layer model.
+	* The Typescript front end version of the classes is the responsibility of the front-end team.
+	* Structure your model types in folders based on the screen they will be used within.
+	* refer to the Angular2 style guide for organizational questions.  https://angular.io/styleguide
+
+## Create the Angular2 barebones app
+1. 
