@@ -1,0 +1,16 @@
+<h2>Matching People</h2>
+<table class="table table-hover table-striped">
+  <caption>{{resultCount() + (resultCount() > 1 ? ' people' : ' person')}}</caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Phone</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let p of displayResults" (click)="itemSelected(p)">
+    <tr>
+      <td>{{p.FirstName}} {{p.LastName}}</td>
+      <td>{{p.ContactPhoneNumber}}</td>
+    </tr>
+  </tbody>
+</table>
