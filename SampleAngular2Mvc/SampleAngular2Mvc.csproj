@@ -216,6 +216,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\app-chrome\app-header.template.html" />
+    <Content Include="app\location\location.component.html" />
+    <Content Include="app\person\person.component.html" />
+    <Content Include="app\trip\trip.component.html" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -241,6 +245,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\systemjs.config.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -277,6 +282,8 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="typings.json" />
+    <Content Include="Views\Home\NgApp.cshtml" />
+    <Content Include="Views\Shared\_NgLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="dist\" />
@@ -296,9 +303,24 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="app\app-chrome\app-chrome.module.ts" />
+    <TypeScriptCompile Include="app\app-chrome\app-footer.component.ts" />
+    <TypeScriptCompile Include="app\app-chrome\app-header.component.ts" />
+    <TypeScriptCompile Include="app\app-chrome\app-router-menu.service.ts" />
+    <TypeScriptCompile Include="app\app.component.ts" />
+    <TypeScriptCompile Include="app\app.module.ts" />
+    <TypeScriptCompile Include="app\location\location.component.ts" />
     <TypeScriptCompile Include="app\location\location.model.ts" />
+    <TypeScriptCompile Include="app\location\location.module.ts" />
+    <TypeScriptCompile Include="app\location\location-routing.module.ts" />
+    <TypeScriptCompile Include="app\person\person.component.ts" />
     <TypeScriptCompile Include="app\person\person.model.ts" />
+    <TypeScriptCompile Include="app\person\person.module.ts" />
+    <TypeScriptCompile Include="app\person\person-routing.module.ts" />
+    <TypeScriptCompile Include="app\trip\trip-routing.module.ts" />
+    <TypeScriptCompile Include="app\trip\trip.component.ts" />
     <TypeScriptCompile Include="app\trip\trip.model.ts" />
+    <TypeScriptCompile Include="app\trip\trip.module.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Angular Demo App";
+    Layout = "~/Views/Shared/_NgLayout.cshtml";
+}
+@section head{
+    <base href="/">
+    <script>
+        System.import('app/app.module.js').catch(function (err)
+        {
+            console.error(err);
+        });
+    </script>
+}
+
+<app-root></app-root>

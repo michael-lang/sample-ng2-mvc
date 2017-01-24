@@ -58,4 +58,21 @@ Even if another team is working on the back-end, you may need to create an inter
 	* refer to the Angular2 style guide for organizational questions.  https://angular.io/styleguide
 
 ## Create the Angular2 barebones app
-1. 
+1. Set the MVC backend to load your app route(s) into a cshtml page using systemjs to load your App.
+	* HomeController.cs - add a route with the desired path, return a View.
+	* In the view file, use systemjs to load the AppModule shown below.
+2. The angular application code needs a way to bootstrap into the page.  Create an AppModule to define the base Application
+	* also requires a top level AppComponent defining some markup and possibly application logic
+	* this example creates additional 'chrome' named AppChromeModule, containing a header with navigation and a footer.
+3. Create a module and component pair for each 'page' you want in the angular app.  (ex.  TripModule and TripComponent)
+	* refer to the Angular2 style guide for naming and folder organization guidelines.
+	* hold off on adding complexity to any page modules until the barebones outline runs and navigates between 'pages' (modules) properly.  
+	This will help you debug getting the project setup.
+4.  Add navigation using the angular RouterModule.
+	* Define a route for each top level page with a module. (ie. TripRoutingModule)
+	* Import your routing module into the page module. (ie. TripModule)
+	* Then we gather these routes in a service (AppRouterMenuService) and build a menu structure then used by the AppHeaderComponent.
+5. build and run the project and you should see menu items for your routed modules, with one of the pages defined as the default route and initially visible.
+	* If you have problems, check versions of all packages to match this project exactly.  Only upgrade dependencies after you have a basic working app.
+	* Also check if the typescript is set to build automatically, spot check your most recent changed ts files by looking at the compiled js files for the change.
+

@@ -8,7 +8,14 @@ namespace SampleAngular2Mvc.Controllers
         [Route("")]
         public ActionResult Index()
         {
-            return View();
+            return View("NgApp");
+        }
+        [Route("trip")]
+        [Route("location")]
+        [Route("person")]
+        public ActionResult AppBookmarkableRoutes()
+        {
+            return View("NgApp");
         }
 
         [Route("about")]
