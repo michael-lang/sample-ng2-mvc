@@ -9,5 +9,8 @@ namespace SampleAngular2Mvc.Models
     /// </summary>
     public class TripModel : Trip
     {
+        //public Location DepartureLocation { get; set; }
+        //public Location ArrivalLocation { get; set; }
+        //public Person Driver { get; set; }
     }
 }

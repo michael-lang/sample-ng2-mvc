@@ -1,3 +1,26 @@
 ﻿[
-
+  {
+    "personId": "A01",
+    "firstName": "John",
+    "lastName": "Smith",
+    "contactPhoneNumber": "314-555-1234"
+  },
+  {
+    "personId": "A02",
+    "firstName": "Michael",
+    "lastName": "Jones",
+    "contactPhoneNumber": "618-555-7362"
+  },
+  {
+    "personId": "A03",
+    "firstName": "Harry",
+    "lastName": "Denton",
+    "contactPhoneNumber": "986-555-1192"
+  },
+  {
+    "personId": "A04",
+    "firstName": "William",
+    "lastName": "Wilson",
+    "contactPhoneNumber": "208-555-8881"
+  }
 ]

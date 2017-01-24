@@ -1,6 +1,10 @@
 ﻿export class Person {
-    public personId: string;
-    public firstName: string;
-    public lastName: string;
-    public contactPhoneNumber: string;
+    public PersonId: string;
+    public FirstName: string;
+    public LastName: string;
+    public ContactPhoneNumber: string;
+}
+
+export class PersonCriteria {
+    public term: string;
 }

@@ -10,4 +10,9 @@ namespace SampleAngular2Mvc.Models
     public class PersonModel : Person
     {
     }
+
+    public class PersonCriteriaModel
+    {
+        public string Term { get; set; }
+    }
 }

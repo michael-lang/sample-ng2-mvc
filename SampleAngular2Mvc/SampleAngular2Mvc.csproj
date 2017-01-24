@@ -217,8 +217,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app-chrome\app-header.template.html" />
+    <Content Include="app\app-shared\tabset\tabset.component.html" />
     <Content Include="app\location\location.component.html" />
     <Content Include="app\person\person.component.html" />
+    <Content Include="app\person\search\person-search-form.component.html" />
+    <Content Include="app\person\search\person-search-results.component.html" />
+    <Content Include="app\person\search\person-search.component.html" />
     <Content Include="app\trip\trip.component.html" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -234,6 +238,13 @@
     <Content Include="App_Data\locations.json" />
     <Content Include="App_Data\people.json" />
     <Content Include="App_Data\trips.json" />
+    <Content Include="app\app-shared\tabset\tabset.component.scss" />
+    <Content Include="app\app-shared\app-shared.scss" />
+    <Content Include="app\app-chrome\app-chrome.scss" />
+    <Content Include="app\trip\trip.component.scss" />
+    <Content Include="app\app.scss" />
+    <Content Include="app\location\location.component.scss" />
+    <Content Include="app\person\person.component.scss" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -286,6 +297,7 @@
     <Content Include="Views\Shared\_NgLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="app\person\detail\" />
     <Folder Include="dist\" />
   </ItemGroup>
   <ItemGroup>
@@ -307,6 +319,16 @@
     <TypeScriptCompile Include="app\app-chrome\app-footer.component.ts" />
     <TypeScriptCompile Include="app\app-chrome\app-header.component.ts" />
     <TypeScriptCompile Include="app\app-chrome\app-router-menu.service.ts" />
+    <TypeScriptCompile Include="app\app-shared\generic-detail.component.ts" />
+    <TypeScriptCompile Include="app\app-shared\generic-search-form.component.ts" />
+    <TypeScriptCompile Include="app\app-shared\generic-search-results.component.ts" />
+    <TypeScriptCompile Include="app\app-shared\generic-search.component.ts" />
+    <TypeScriptCompile Include="app\app-shared\generic.service.ts" />
+    <TypeScriptCompile Include="app\app.constants.ts" />
+    <TypeScriptCompile Include="app\app-shared\app-shared.module.ts" />
+    <TypeScriptCompile Include="app\app-shared\tabset\tab.model.ts" />
+    <TypeScriptCompile Include="app\app-shared\tabset\tabset-generic-page.component.ts" />
+    <TypeScriptCompile Include="app\app-shared\tabset\tabset.component.ts" />
     <TypeScriptCompile Include="app\app.component.ts" />
     <TypeScriptCompile Include="app\app.module.ts" />
     <TypeScriptCompile Include="app\location\location.component.ts" />
@@ -317,6 +339,10 @@
     <TypeScriptCompile Include="app\person\person.model.ts" />
     <TypeScriptCompile Include="app\person\person.module.ts" />
     <TypeScriptCompile Include="app\person\person-routing.module.ts" />
+    <TypeScriptCompile Include="app\person\person.service.ts" />
+    <TypeScriptCompile Include="app\person\search\person-search-form.component.ts" />
+    <TypeScriptCompile Include="app\person\search\person-search-results.component.ts" />
+    <TypeScriptCompile Include="app\person\search\person-search.component.ts" />
     <TypeScriptCompile Include="app\trip\trip-routing.module.ts" />
     <TypeScriptCompile Include="app\trip\trip.component.ts" />
     <TypeScriptCompile Include="app\trip\trip.model.ts" />
