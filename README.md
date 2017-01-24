@@ -45,7 +45,7 @@ The following instructions document the steps taken to create this project.
 6. Build and run your web project (must be the startup project - shown in bold, then press run in the toolbar).
 	You will see the clean-libs task run in TRE, then 'dist-libs' before the projects build, and then 'build' after the class library builds.
 
-## Create your back-end model and API
+## Step 3 - Create your back-end model and API
 This step is not necassarily part of the angular project work, and may be supplied by another team.  
 Creation of C# code is beyondd the scope of explanation here, however a contrived example is included.
 Even if another team is working on the back-end, you may need to create an interim front end mock for your anticipated data.
@@ -57,7 +57,7 @@ Even if another team is working on the back-end, you may need to create an inter
 	* Structure your model types in folders based on the screen they will be used within.
 	* refer to the Angular2 style guide for organizational questions.  https://angular.io/styleguide
 
-## Create the Angular2 barebones app
+## Step 4 - Create the Angular2 barebones app
 1. Set the MVC backend to load your app route(s) into a cshtml page using systemjs to load your App.
 	* HomeController.cs - add a route with the desired path, return a View.
 	* In the view file, use systemjs to load the AppModule shown below.
@@ -76,3 +76,11 @@ Even if another team is working on the back-end, you may need to create an inter
 	* If you have problems, check versions of all packages to match this project exactly.  Only upgrade dependencies after you have a basic working app.
 	* Also check if the typescript is set to build automatically, spot check your most recent changed ts files by looking at the compiled js files for the change.
 
+## Step 5 - Create a Shared module for common components used by multiple modules
+1. create a new folder 'app-shared' under the 'app' folder
+2. Create a new module called AppSharedModule (file name 'app-shared.module.ts')
+3. Add this module to the 'imports' list of the first page module that will use something from the shared module
+	* Do not add the shared module as an import to the app module
+4. Create a shared component under app-shared.  ie. tabset
+5. use the shared component in the markup of the page component
+6. build and test.

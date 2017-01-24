@@ -217,6 +217,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app-chrome\app-header.template.html" />
+    <Content Include="app\app-shared\tabset\tabset.component.html" />
     <Content Include="app\location\location.component.html" />
     <Content Include="app\person\person.component.html" />
     <Content Include="app\trip\trip.component.html" />
@@ -234,6 +235,13 @@
     <Content Include="App_Data\locations.json" />
     <Content Include="App_Data\people.json" />
     <Content Include="App_Data\trips.json" />
+    <Content Include="app\app-shared\tabset\tabset.component.scss" />
+    <Content Include="app\app-shared\app-shared.scss" />
+    <Content Include="app\app-chrome\app-chrome.scss" />
+    <Content Include="app\trip\trip.component.scss" />
+    <Content Include="app\app.scss" />
+    <Content Include="app\location\location.component.scss" />
+    <Content Include="app\person\person.component.scss" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -307,6 +315,10 @@
     <TypeScriptCompile Include="app\app-chrome\app-footer.component.ts" />
     <TypeScriptCompile Include="app\app-chrome\app-header.component.ts" />
     <TypeScriptCompile Include="app\app-chrome\app-router-menu.service.ts" />
+    <TypeScriptCompile Include="app\app-shared\app-shared.module.ts" />
+    <TypeScriptCompile Include="app\app-shared\tabset\tab.model.ts" />
+    <TypeScriptCompile Include="app\app-shared\tabset\tabset-generic-page.component.ts" />
+    <TypeScriptCompile Include="app\app-shared\tabset\tabset.component.ts" />
     <TypeScriptCompile Include="app\app.component.ts" />
     <TypeScriptCompile Include="app\app.module.ts" />
     <TypeScriptCompile Include="app\location\location.component.ts" />

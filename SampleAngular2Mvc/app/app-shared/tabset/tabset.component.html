@@ -1,0 +1,17 @@
+﻿<div>
+    <ul class="nav nav-tabs" role="tablist">
+        <li *ngFor="let t of tabs" [ngClass]="{'active': t.active}" role="presentation">
+            <a (click)="activateTab(t.id)">
+                <i class="t.icon" *ngIf="t.icon"></i>
+                <span>{{t.title}}</span>
+                <i class="glyphicon glyphicon-remove" *ngIf="t.closeable" title="close" (click)="closingTab(t.id)"></i>
+            </a>
+        </li>
+        <li *ngIf="showAddTabButton" (click)="addingTab()" class="plus-tab">
+            <span class="glyphicon glyphicon-plus" title="Add New"></span>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <ng-content></ng-content>
+    </div>
+</div>
