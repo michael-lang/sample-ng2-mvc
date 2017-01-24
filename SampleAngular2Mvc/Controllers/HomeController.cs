@@ -1,18 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace SampleAngular2Mvc.Controllers
 {
+    [RoutePrefix("")]
     public class HomeController : Controller
     {
+        [Route("")]
         public ActionResult Index()
         {
-            return View();
+            return View("NgApp");
+        }
+        [Route("trip")]
+        [Route("location")]
+        [Route("person")]
+        public ActionResult AppBookmarkableRoutes()
+        {
+            return View("NgApp");
         }
 
+        [Route("about")]
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -20,6 +26,7 @@ namespace SampleAngular2Mvc.Controllers
             return View();
         }
 
+        [Route("contact")]
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
