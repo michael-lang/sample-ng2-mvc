@@ -9,7 +9,10 @@ Open acccess to NPM and NuGet to restore packages.
 An application with a tabbed interface per area of interest with search on the first tab, and any opened record appearing on another tab.
 Also includes a plus button in the tab row to add a new tab as an item create.
 
-This structure is relatively simple.  Each page component (location, person, trip) has the following:
+This structure is relatively simple.  This is a SPA (single page app) design.  A menu at the top of the page uses the `RoutingModule` to switch 
+between those logical pages to be shown as current.  The current page content is defined in the main app layout using a `router-outlet`.
+
+Each logical page component (location, person, trip) has the following:
 
 1.	Detail view/edit component (ie. location-detail.component.ts & .html)
 2.	Search component (ie. location-search.component.ts & .html)
@@ -60,7 +63,15 @@ Your typescript can simple be a class definition that extends one of the generic
 that is not built into the base class.  The generic classes are all loosely coupled such that you could pick and choose which ones you want to use,
 versus creating something more complex.
 
+### What about Microsoft MVC and Razor?
+This project's 'app' folder is designed to work as part of any Angular2 project using any editor of choice.  The difference is where in the project the app folder is located.
 
+In Microsoft MVC with Razor you can define views server side bound to your data before download to the client.  You can continue to do this for non-Angular pages in your
+project.  This project demonstrates an About and Contact Us page that is not part of the angular project.  The MVC Web API controllers also create a Rest API that can be
+used by both this Angular page and by any other consumer of Rest services.
+
+If you wanted to break up your Angular project into more than one SPA application, such as to organize related features together without the overhead of the entire site, then you
+can do that as well.  This however would vary your module structure to allow such an architecture.
 
 ## How to recreate a similar project
 This project basic setup was inspired by Mithun Pattankar at http://www.mithunvp.com/using-angular-2-asp-net-mvc-5-visual-studio/
