@@ -20,6 +20,14 @@ namespace Candor.Sample
         /// </summary>
         public string Name { get; set; }
         /// <summary>
+        /// The city name.
+        /// </summary>
+        public string City { get; set; }
+        /// <summary>
+        /// The locality region, such as a state in the USA.
+        /// </summary>
+        public string Region { get; set; }
+        /// <summary>
         /// The latitude of the location, for distance calculations.
         /// </summary>
         public decimal Lat { get; set; }

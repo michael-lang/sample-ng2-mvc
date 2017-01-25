@@ -52,10 +52,13 @@ namespace Candor.Sample.Mocks
                 return _mockData ?? new List<Location>();
 
             return (_mockData ?? new List<Location>())
-                .Where(x => (x.Name.IndexOf(term, StringComparison.InvariantCultureIgnoreCase) >= 0))
+                .Where(x => (x.Name.IndexOf(term, StringComparison.InvariantCultureIgnoreCase) >= 0)
+                    || x.City.IndexOf(term, StringComparison.InvariantCultureIgnoreCase) >= 0
+                    || x.Region.IndexOf(term, StringComparison.InvariantCultureIgnoreCase) >= 0)
                 .OrderBy(x => x.Name)
-                .ToList();
+                .ToList(); //TODO: rank results by best match
             //TODO: later add parsing of the term into lat/lng pair and find nearest 10 locations - maybe just in the real datasource
+            //  maybe call google for location search results (requires 1 term, not separate fields)
         }
 
         public override Location Save(Location item)

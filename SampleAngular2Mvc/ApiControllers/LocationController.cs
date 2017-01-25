@@ -16,11 +16,11 @@ namespace SampleAngular2Mvc.ApiControllers
             var item = ProviderResolver<LocationProvider>.Get.Provider.GetById(id);
             return Request.CreateResponse(HttpStatusCode.OK, item);
         }
-        [HttpGet]
+        [HttpGet, HttpPost]
         [Route("search")]
-        public HttpResponseMessage GetSearch(string q)
+        public HttpResponseMessage GetSearch(LocationCriteriaModel model)
         {
-            var items = ProviderResolver<LocationProvider>.Get.Provider.Search(q);
+            var items = ProviderResolver<LocationProvider>.Get.Provider.Search(model.Term);
             return Request.CreateResponse(HttpStatusCode.OK, items);
         }
         [HttpPost]

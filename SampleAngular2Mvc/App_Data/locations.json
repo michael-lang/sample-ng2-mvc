@@ -1,3 +1,27 @@
 ﻿[
+  {
+    "locationId": "A01",
+    "name": "Forest Park",
+    "city": "St. Louis",
+    "region": "Missouri",
+    "lat": "38.633053",
+    "long": "-90.285317"
+  },
+  {
+    "locationId": "A02",
+    "name": "Cedar Point",
+    "city": "Sandusky",
+    "region": "Ohio",
+    "lat": "41.477618",
+    "long": "-82.680882"
+  },
+  {
+    "locationId": "A03",
+    "name": "Key Largo Art Studio",
+    "city": "Key Largo",
+    "region": "Florida",
+    "lat": "25.134086",
+    "long": "-80.406083"
+  }
 
 ]

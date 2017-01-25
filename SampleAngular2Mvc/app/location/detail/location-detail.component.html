@@ -1,0 +1,47 @@
+<div *ngIf="loading">
+    <div class="text-center"><span class="glyphicon glyphicon-refresh"> </span></div>
+</div>
+<div *ngIf="!loading" class="panel form-horizontal">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>
+                        <span>Name</span>
+                        <input type="text" class="form-control" [(ngModel)]="item.Name">
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <span>City</span>
+                        <input type="text" class="form-control" [(ngModel)]="item.City">
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <span>Region / State</span>
+                        <input type="text" class="form-control" [(ngModel)]="item.Region">
+                    </label>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>
+                        <span>Longitude</span>
+                        <input type="tel" class="form-control" [(ngModel)]="item.Long">
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <span>Latitude</span>
+                        <input type="text" class="form-control" [(ngModel)]="item.Lat">
+                    </label>
+                </div>
+                <!--TODO: add a google map preview-->
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <button class="btn btn-primary" (click)="save()">Save</button>
+    </div>
+</div>
