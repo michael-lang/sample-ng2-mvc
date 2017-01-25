@@ -5,9 +5,62 @@ An exploration of a few techniques to create an Angular2 application inside Visu
 Visual Studio Community edition with Update 3 (14.0.25431.01 or later).
 Open acccess to NPM and NuGet to restore packages.
 
-## Setup
-This project was inspired by Mithun Pattankar at http://www.mithunvp.com/using-angular-2-asp-net-mvc-5-visual-studio/
+## Overview
+An application with a tabbed interface per area of interest with search on the first tab, and any opened record appearing another tab.
+Also includes a plus button in the tab row to add a new tab as an item create.
+
+This structure is relatively simple.  Each page component (location, person, trip) has the following:
+1.	Detail view/edit component (ie. location-detail.component.ts & .html)
+2.	Search component (ie. location-search.component.ts & .html)
+	* Search form component (ie. location-search-form.component.ts & .html)
+	* Search results component (ie. location-search-results.component.ts & .html)
+3. a Service to get by id, search by criteria object (1 or more inputs), and save an item (new or existing)
+
+Each of these components would have a similar boilerplate code for the component, with the view varying based on the data.  
+Since much of the component code is boilerplate, we took advantage of now having generics in typescript to create a base 
+class for each of these component types.  Also, since the rest service to support these components is similar, a base class 
+was created to handle the 80% case of these services with extension points for customizations.
+
+Find an overview of generics in typescript here:
+https://www.typescriptlang.org/docs/handbook/generics.html
+
+1. GenericsService<C, T>
+This generic implements two interfaces to handle search with a criteria object, get by id, and save an item.
+	* IGenericSearchService<C, T>
+		- search(criteria: C): T[] function
+	* IGenericItemService<T>
+		- get(id: string) function
+		- save(item: T): T function
+2. GenericDetailComponent<T, S extends IGenericItemService<T>>
+This is a base class for any general view of a single item.  It contains the save() function usable from your derived 
+component view.  ngOnInit() and save() calls the injected S type service for the Http operation.
+3. GenericSearchFormComponent<C>
+Only contains emitters for search and criteria reset
+4. GenericSearchResultsComponent<T>
+Only responsible for receiving the results data via a binding and emitting when an item is clicked.
+5. GenericSearchComponent<C, T>
+contains the controller logic to call the rest search service and pass the results down to the search results component.
+It also subscribes to a result click and passes the emit onto a parent component to decide what to do with it (such as open it in a new tab).
+6. TabsetGenericPageComponent<T>
+All the coordination required to have a tabbed interface 
+	* search as a static tab
+	* each result clicked on opens in a new tab
+	* a button to add a new tab for an item create
+	* if duplicate result is clicked, the current open tab for it activates (no duplicate tabs for the same item)
+
+Most of the work to derive from these base components is in laying out your view.  In your layout you can use any pipe you need for data formatting,
+general layout decisions, as well as deciding any sub views that open by adding additional event bindings not in the base classes.
+
+Your typescript can simple be a class definition that extends one of the generic classes above, or you can add additional features to your View
+that is not built into the base class.  The generic classes are all loosely coupled such that you could pick and choose which ones you want to use,
+versus creating something more complex.
+
+
+
+## How to recreate a similar project
+This project basic setup was inspired by Mithun Pattankar at http://www.mithunvp.com/using-angular-2-asp-net-mvc-5-visual-studio/
  * also see the repo: https://github.com/mithunvp/ng2Mvc5Demo
+The C# code structure was influenced by other commercial projects I created using https://github.com/michael-lang/candor-common
 
 His work helped me get a angular2 project started with NPM and Visual Studio.  This sample will build from his work into creating useful Application components.
 The following instructions document the steps taken to create this project.
