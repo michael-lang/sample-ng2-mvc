@@ -20,29 +20,30 @@ This structure is relatively simple.  Each page component (location, person, tri
 Each of these components would have a similar boilerplate code for the component, with the view varying based on the data.  
 Since much of the component code is boilerplate, we took advantage of now having generics in typescript to create a base 
 class for each of these component types.  Also, since the rest service to support these components is similar, a base class 
-was created to handle the 80% case of these services with extension points for customizations.
+was created to handle the 80% + case of these services with extension points for customizations.
 
 Find an overview of generics in typescript here:
 https://www.typescriptlang.org/docs/handbook/generics.html
 
-1. GenericsService<C, T>
-This generic implements two interfaces to handle search with a criteria object, get by id, and save an item.
-	* IGenericSearchService<C, T>
+The base class generic types you could reuse on other projects include:
+
+1. `GenericService<C, T>`
+	* `IGenericSearchService<C, T>`
 		- search(criteria: C): T[] function
-	* IGenericItemService<T>
+	* `IGenericItemService<T>`
 		- get(id: string) function
 		- save(item: T): T function
-2. GenericDetailComponent<T, S extends IGenericItemService<T>>
+2. `GenericDetailComponent<T, S extends IGenericItemService<T>>`
 This is a base class for any general view of a single item.  It contains the save() function usable from your derived 
 component view.  ngOnInit() and save() calls the injected S type service for the Http operation.
-3. GenericSearchFormComponent<C>
+3. `GenericSearchFormComponent<C>`
 Only contains emitters for search and criteria reset
-4. GenericSearchResultsComponent<T>
+4. `GenericSearchResultsComponent<T>`
 Only responsible for receiving the results data via a binding and emitting when an item is clicked.
-5. GenericSearchComponent<C, T>
+5. `GenericSearchComponent<C, T>`
 contains the controller logic to call the rest search service and pass the results down to the search results component.
 It also subscribes to a result click and passes the emit onto a parent component to decide what to do with it (such as open it in a new tab).
-6. TabsetGenericPageComponent<T>
+6. `TabsetGenericPageComponent<T>`
 All the coordination required to have a tabbed interface 
 	* search as a static tab
 	* each result clicked on opens in a new tab
