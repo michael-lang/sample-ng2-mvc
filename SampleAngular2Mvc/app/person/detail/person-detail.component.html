@@ -1,0 +1,38 @@
+<div *ngIf="loading">
+    <div class="text-center"><span class="glyphicon glyphicon-refresh"> </span></div>
+</div>
+<div *ngIf="!loading" class="panel">
+    <div class="panel-body">
+        <div class="form-horizontal">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>
+                            <span>First Name</span>
+                            <input type="text" class="form-control" [(ngModel)]="item.FirstName">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <span>Last Name</span>
+                            <input type="text" class="form-control" [(ngModel)]="item.LastName">
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>
+                            <span>Phone Number</span>
+                            <input type="tel" class="form-control" [(ngModel)]="item.ContactPhoneNumber">
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <button class="btn btn-primary" (click)="save()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

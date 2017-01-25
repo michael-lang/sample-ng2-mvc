@@ -3,9 +3,7 @@
         <app-tabset [tabs]="tabs" [showAddTabButton]="true" (onTabClosing)="closeTab($event)" (onTabAdd)="addTab($event)">
             <div *ngFor="let t of tabs" class="content" [ngClass]="{'active': t.active}">
                 <person-search *ngIf="t.template === 'search'" (doOpen)="openItem($event)"></person-search>
-                <p *ngIf="t.template === 'item'">
-                    tab body for {{t.id}}
-                </p>
+                <person-detail *ngIf="t.template === 'item'" [itemId]="t.itemId" (itemSaved)="onItemSaved($event, t)"></person-detail>
             </div>
         </app-tabset>
     </div>

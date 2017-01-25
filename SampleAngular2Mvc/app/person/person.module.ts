@@ -9,6 +9,7 @@ import { PersonRoutingModule } from './person-routing.module';
 import { PersonSearchComponent } from './search/person-search.component';
 import { PersonSearchResultsComponent } from './search/person-search-results.component';
 import { PersonSearchFormComponent } from './search/person-search-form.component';
+import { PersonDetailComponent } from './detail/person-detail.component';
 import { PersonService } from './person.service';
 
 @NgModule({
@@ -22,12 +23,14 @@ import { PersonService } from './person.service';
     exports: [PersonComponent,
         PersonSearchComponent,
         PersonSearchResultsComponent,
-        PersonSearchFormComponent
+        PersonSearchFormComponent,
+        PersonDetailComponent
     ],
     declarations: [PersonComponent,
         PersonSearchComponent,
         PersonSearchResultsComponent,
-        PersonSearchFormComponent
+        PersonSearchFormComponent,
+        PersonDetailComponent
     ]
 })
 export class PersonModule {

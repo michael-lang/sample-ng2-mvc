@@ -1,7 +1,7 @@
 ﻿import { Component } from '@angular/core';
+import { GenericSearchComponent } from '../../app-shared/generic-search.component'
 import { Person, PersonCriteria } from '../person.model';
 import { PersonService } from '../person.service'
-import { GenericSearchComponent } from '../../app-shared/generic-search.component'
 
 @Component({
     selector: 'person-search',
