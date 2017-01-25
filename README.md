@@ -6,10 +6,11 @@ Visual Studio Community edition with Update 3 (14.0.25431.01 or later).
 Open acccess to NPM and NuGet to restore packages.
 
 ## Overview
-An application with a tabbed interface per area of interest with search on the first tab, and any opened record appearing another tab.
+An application with a tabbed interface per area of interest with search on the first tab, and any opened record appearing on another tab.
 Also includes a plus button in the tab row to add a new tab as an item create.
 
 This structure is relatively simple.  Each page component (location, person, trip) has the following:
+
 1.	Detail view/edit component (ie. location-detail.component.ts & .html)
 2.	Search component (ie. location-search.component.ts & .html)
 	* Search form component (ie. location-search-form.component.ts & .html)
