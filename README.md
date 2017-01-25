@@ -22,6 +22,8 @@ Since much of the component code is boilerplate, we took advantage of now having
 class for each of these component types.  Also, since the rest service to support these components is similar, a base class 
 was created to handle the 80% + case of these services with extension points for customizations.
 
+### Resusable base typescript classes using 'generics'
+
 Find an overview of generics in typescript here:
 https://www.typescriptlang.org/docs/handbook/generics.html
 
@@ -41,7 +43,8 @@ Only contains emitters for search and criteria reset
 4. `GenericSearchResultsComponent<T>`
 Only responsible for receiving the results data via a binding and emitting when an item is clicked.
 5. `GenericSearchComponent<C, T>`
-contains the controller logic to call the rest search service and pass the results down to the search results component.
+Coordinates the seach form criteria and the results.
+It contains the controller logic to call the rest search service and pass the results down to the search results component.
 It also subscribes to a result click and passes the emit onto a parent component to decide what to do with it (such as open it in a new tab).
 6. `TabsetGenericPageComponent<T>`
 All the coordination required to have a tabbed interface 
