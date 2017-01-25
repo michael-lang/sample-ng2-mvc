@@ -21,7 +21,7 @@ import { TripModule } from './trip/trip.module';
         PersonModule,
         TripModule,
         RouterModule.forRoot([{
-            path: '', redirectTo: '/trip', pathMatch: 'full'
+            path: '', redirectTo: '/person', pathMatch: 'full'
         }])
     ],
     declarations: [

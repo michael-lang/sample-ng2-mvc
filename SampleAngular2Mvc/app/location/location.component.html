@@ -1,3 +1,10 @@
-﻿<p>
-    Location component works!
-</p>
+﻿<div class="panel">
+    <div class="panel-body">
+        <app-tabset [tabs]="tabs" [showAddTabButton]="true" (onTabClosing)="closeTab($event)" (onTabAdd)="addTab($event)">
+            <div *ngFor="let t of tabs" class="content" [ngClass]="{'active': t.active}">
+                <location-search *ngIf="t.template === 'search'" (doOpen)="openItem($event)"></location-search>
+                <location-detail *ngIf="t.template === 'item'" [itemId]="t.itemId" (itemSaved)="onItemSaved($event, t)"></location-detail>
+            </div>
+        </app-tabset>
+    </div>
+</div>

@@ -10,4 +10,9 @@ namespace SampleAngular2Mvc.Models
     public class LocationModel : Location
     {
     }
+
+    public class LocationCriteriaModel
+    {
+        public string Term { get; set; }
+    }
 }

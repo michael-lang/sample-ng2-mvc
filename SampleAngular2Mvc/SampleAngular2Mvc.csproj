@@ -218,7 +218,11 @@
   <ItemGroup>
     <Content Include="app\app-chrome\app-header.template.html" />
     <Content Include="app\app-shared\tabset\tabset.component.html" />
+    <Content Include="app\location\detail\location-detail.component.html" />
     <Content Include="app\location\location.component.html" />
+    <Content Include="app\location\search\location-search-form.component.html" />
+    <Content Include="app\location\search\location-search-results.component.html" />
+    <Content Include="app\location\search\location-search.component.html" />
     <Content Include="app\person\detail\person-detail.component.html" />
     <Content Include="app\person\person.component.html" />
     <Content Include="app\person\search\person-search-form.component.html" />
@@ -331,10 +335,15 @@
     <TypeScriptCompile Include="app\app-shared\tabset\tabset.component.ts" />
     <TypeScriptCompile Include="app\app.component.ts" />
     <TypeScriptCompile Include="app\app.module.ts" />
+    <TypeScriptCompile Include="app\location\detail\location-detail.component.ts" />
     <TypeScriptCompile Include="app\location\location.component.ts" />
     <TypeScriptCompile Include="app\location\location.model.ts" />
     <TypeScriptCompile Include="app\location\location.module.ts" />
     <TypeScriptCompile Include="app\location\location-routing.module.ts" />
+    <TypeScriptCompile Include="app\location\location.service.ts" />
+    <TypeScriptCompile Include="app\location\search\location-search-form.component.ts" />
+    <TypeScriptCompile Include="app\location\search\location-search-results.component.ts" />
+    <TypeScriptCompile Include="app\location\search\location-search.component.ts" />
     <TypeScriptCompile Include="app\person\detail\person-detail.component.ts" />
     <TypeScriptCompile Include="app\person\person.component.ts" />
     <TypeScriptCompile Include="app\person\person.model.ts" />
