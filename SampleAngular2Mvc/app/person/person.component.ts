@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { Tab } from '../app-shared/tabset/tab.model';
 import { Person, PersonHolder } from './person.model';
 import { AppState } from '../app.store';
-import { PersonState, PersonCloseAction, PersonOpenAction } from './person.store';
+import { PersonCloseAction, PersonOpenAction } from './person.store';
 
 @Component({
     selector: 'app-person',
@@ -46,9 +46,6 @@ export class PersonComponent {
         this._store.dispatch(new PersonCloseAction(tab.id))
     }
     addTab(b: Boolean) {
-        let holder = new PersonHolder();
-        holder.Person = new Person();
-        holder.PlaceholderId = 'tab-id-new-' + (++this.nextNewId);
-        this._store.dispatch(new PersonOpenAction(holder));
+        this._store.dispatch(new PersonOpenAction(new Person()));
     }
 }

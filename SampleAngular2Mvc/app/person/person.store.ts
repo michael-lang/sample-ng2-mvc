@@ -18,10 +18,11 @@ export interface PersonState {
     isSearching: boolean,
     results: Person[],
     hasResults: boolean,
-    openList: PersonHolder[]
+    openList: PersonHolder[],
+    nextNewId: number
 }
 const initialState: PersonState = {
-    criteria: null, isSearching: false, results: [], hasResults: false, openList: []
+    criteria: null, isSearching: false, results: [], hasResults: false, openList: [], nextNewId: 0
 };
 
 export function PersonReducer(state = initialState, action: PersonActions): PersonState {
@@ -40,11 +41,21 @@ export function PersonReducer(state = initialState, action: PersonActions): Pers
                 hasResults: action.payload && (<Person[]>action.payload).length > 0
             });
         case PersonActionTypes.OPEN:
-            if ((<PersonHolder>action.payload).Person.PersonId && (<PersonHolder>action.payload).Person.PersonId.length > 0) {
-                (<PersonHolder>action.payload).PlaceholderId = (<PersonHolder>action.payload).Person.PersonId;
-            }   //control placeholder ids for loaded items, new items can be assigned an incremented id from list component
+            let oholder = new PersonHolder();
+            oholder.Person = (<Person>action.payload) || new Person();
+            if (oholder.Person.PersonId && oholder.Person.PersonId.length > 0) {
+                oholder.PlaceholderId = oholder.Person.PersonId;
+                var openFilter = state.openList.filter(x => x.Person.PersonId === oholder.Person.PersonId);
+                if (openFilter.length > 0) {
+                    return state; //already open, nothing to do
+                }
+            } else {
+                oholder.PlaceholderId = "new-" + state.nextNewId;
+            }
+
             return tassign(state, {
-                openList: state.openList.concat([<PersonHolder>action.payload])
+                openList: state.openList.concat([oholder]),
+                nextNewId: state.nextNewId + 1
             });
         case PersonActionTypes.CLOSE:
             return tassign(state, {
@@ -84,7 +95,7 @@ export class PersonSearchCompleteAction implements Action {
 export class PersonOpenAction implements Action {
     type = PersonActionTypes.OPEN;
 
-    constructor(public payload: PersonHolder) { }
+    constructor(public payload: Person) { }
 }
 
 export class PersonCloseAction implements Action {

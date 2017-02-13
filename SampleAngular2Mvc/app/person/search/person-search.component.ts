@@ -29,9 +29,6 @@ export class PersonSearchComponent {
         this._service.search(criteria);
     }
     public itemSelected(item: Person) {
-        let holder = new PersonHolder();
-        holder.Person = item;
-        holder.PlaceholderId = item.PersonId;
-        this._store.dispatch(new PersonOpenAction(holder));
+        this._store.dispatch(new PersonOpenAction(item));
     }
 }
