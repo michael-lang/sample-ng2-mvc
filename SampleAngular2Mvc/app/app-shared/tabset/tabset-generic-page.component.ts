@@ -2,7 +2,6 @@
 
 export class TabSetGenericPageComponent<T> {
     nextNewId = 0;
-    nextTabId = 0;
     tabs: Tab[] = new Array<Tab>();
 
     constructor() {

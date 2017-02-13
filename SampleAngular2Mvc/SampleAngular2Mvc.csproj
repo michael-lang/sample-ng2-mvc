@@ -328,6 +328,7 @@
     <TypeScriptCompile Include="app\app-shared\generic-search-results.component.ts" />
     <TypeScriptCompile Include="app\app-shared\generic-search.component.ts" />
     <TypeScriptCompile Include="app\app-shared\generic.service.ts" />
+    <TypeScriptCompile Include="app\app-shared\type-cache.ts" />
     <TypeScriptCompile Include="app\app.constants.ts" />
     <TypeScriptCompile Include="app\app-shared\app-shared.module.ts" />
     <TypeScriptCompile Include="app\app-shared\tabset\tab.model.ts" />
@@ -335,6 +336,7 @@
     <TypeScriptCompile Include="app\app-shared\tabset\tabset.component.ts" />
     <TypeScriptCompile Include="app\app.component.ts" />
     <TypeScriptCompile Include="app\app.module.ts" />
+    <TypeScriptCompile Include="app\app.store.ts" />
     <TypeScriptCompile Include="app\location\detail\location-detail.component.ts" />
     <TypeScriptCompile Include="app\location\location.component.ts" />
     <TypeScriptCompile Include="app\location\location.model.ts" />
@@ -350,6 +352,7 @@
     <TypeScriptCompile Include="app\person\person.module.ts" />
     <TypeScriptCompile Include="app\person\person-routing.module.ts" />
     <TypeScriptCompile Include="app\person\person.service.ts" />
+    <TypeScriptCompile Include="app\person\person.store.ts" />
     <TypeScriptCompile Include="app\person\search\person-search-form.component.ts" />
     <TypeScriptCompile Include="app\person\search\person-search-results.component.ts" />
     <TypeScriptCompile Include="app\person\search\person-search.component.ts" />

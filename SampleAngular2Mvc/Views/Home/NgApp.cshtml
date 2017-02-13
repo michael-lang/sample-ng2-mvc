@@ -6,6 +6,27 @@
     <base href="/">
     <link href="~/dist/css/app.css" rel="stylesheet">
     <script>
+        System.config({
+            packages: {
+                '@@ngrx/core': {
+                    main: '/bundles/core.umd.js',
+                    defaultExtension: 'js'
+                },
+                '@@ngrx/store': {
+                    main: '/bundles/store.umd.js',
+                    defaultExtension: 'js'
+                },
+                'tassign': {
+                    main: '/lib/index.js',
+                    defaultExtension: 'js'
+                }
+            },
+            map: {
+                '@@ngrx/core': '/dist/libs/@@ngrx/core',
+                '@@ngrx/store': '/dist/libs/@@ngrx/store',
+                'tassign': '/dist/libs/tassign',
+            }
+        });
         System.import('app/app.module.js').catch(function (err)
         {
             console.error(err);
