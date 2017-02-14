@@ -7,6 +7,11 @@
     public Long: number;
 }
 
+export class LocationHolder {
+    public Location: Location;
+    public PlaceholderId: string;
+}
+
 export class LocationCriteria {
     public term: string;
 }
