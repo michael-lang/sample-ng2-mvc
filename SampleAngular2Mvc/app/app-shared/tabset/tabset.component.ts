@@ -10,6 +10,7 @@ export class TabSetComponent {
     @Input() showAddTabButton: boolean = false;
     @Output() onTabClosing: EventEmitter<Tab> = new EventEmitter<Tab>();
     @Output() onTabAdd: EventEmitter<boolean> = new EventEmitter<boolean>();
+    @Output() onTabActivated: EventEmitter<string> = new EventEmitter<string>();
     private activeTabId: string = ''; //private to help during transitions
 
     activateTab(tabId: string) {
@@ -18,6 +19,7 @@ export class TabSetComponent {
             this.activeTabId = match[0].id;
         }
         this.tabs.forEach(x => x.active = (x.id === this.activeTabId));
+        this.onTabActivated.emit(tabId);
     }
     addingTab() {
         this.onTabAdd.emit(true);

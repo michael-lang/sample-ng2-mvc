@@ -8,6 +8,7 @@ export const PersonActionTypes = {
     SEARCH: type('[Person] Search'),
     SEARCH_COMPLETE: type('[Person] Search Complete'),
     OPEN: type('[Person] Open'),
+    TAB_ACTIVATE: type('[Person] Tab Activate'),
     CLOSE: type('[Person] Close'),
     INSERT_COMPLETE: type('[Person] Insert Complete'),
     UPDATE_COMPLETE: type('[Person] Update Complete')
@@ -19,10 +20,11 @@ export interface PersonState {
     results: Person[],
     hasResults: boolean,
     openList: PersonHolder[],
+    activeTabId: string,
     nextNewId: number
 }
 const initialState: PersonState = {
-    criteria: null, isSearching: false, results: [], hasResults: false, openList: [], nextNewId: 0
+    criteria: null, isSearching: false, results: [], hasResults: false, openList: [], activeTabId: '', nextNewId: 0
 };
 
 export function PersonReducer(state = initialState, action: PersonActions): PersonState {
@@ -47,7 +49,9 @@ export function PersonReducer(state = initialState, action: PersonActions): Pers
                 oholder.PlaceholderId = oholder.Person.PersonId;
                 var openFilter = state.openList.filter(x => x.Person.PersonId === oholder.Person.PersonId);
                 if (openFilter.length > 0) {
-                    return state; //already open, nothing to do
+                    return tassign(state, {
+                        activeTabId: oholder.PlaceholderId,
+                    });
                 }
             } else {
                 oholder.PlaceholderId = "new-" + state.nextNewId;
@@ -55,11 +59,20 @@ export function PersonReducer(state = initialState, action: PersonActions): Pers
 
             return tassign(state, {
                 openList: state.openList.concat([oholder]),
+                activeTabId: oholder.PlaceholderId,
                 nextNewId: state.nextNewId + 1
+            });
+        case PersonActionTypes.TAB_ACTIVATE:
+            return tassign(state, {
+                activeTabId: action.payload
             });
         case PersonActionTypes.CLOSE:
             return tassign(state, {
-                openList: state.openList.filter(x => x.PlaceholderId !== (<string>action.payload))
+                openList: state.openList.filter(x => x.PlaceholderId !== (<string>action.payload)),
+                activeTabId: state.activeTabId !== action.payload ? state.activeTabId 
+                    : state.openList.length > 0 && state.openList[0].PlaceholderId !== action.payload
+                        ? state.openList[0].PlaceholderId
+                        : ''
             });
         case PersonActionTypes.INSERT_COMPLETE:
             let iholder = (<PersonHolder>action.payload);
@@ -98,6 +111,12 @@ export class PersonOpenAction implements Action {
     constructor(public payload: Person) { }
 }
 
+export class PersonTabActivateAction implements Action {
+    type = PersonActionTypes.TAB_ACTIVATE;
+
+    constructor(public payload: string) { }
+}
+
 export class PersonCloseAction implements Action {
     type = PersonActionTypes.CLOSE;
 
@@ -120,6 +139,7 @@ export type PersonActions
     = PersonSearchAction
     | PersonSearchCompleteAction
     | PersonOpenAction
+    | PersonTabActivateAction
     | PersonCloseAction
     | PersonInsertAction
     | PersonUpdateAction;

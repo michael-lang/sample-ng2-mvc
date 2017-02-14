@@ -1,6 +1,6 @@
 ﻿<div class="panel">
     <div class="panel-body">
-        <app-tabset [tabs]="tabs | async" [showAddTabButton]="true" (onTabClosing)="closeTab($event)" (onTabAdd)="addTab($event)">
+        <app-tabset [tabs]="tabs | async" [showAddTabButton]="true" (onTabClosing)="closeTab($event)" (onTabAdd)="addTab($event)" (onTabActivated)="activateTab($event)">
             <div *ngFor="let t of tabs | async" class="content" [ngClass]="{'active': t.active}">
                 <person-search *ngIf="t.template === 'search'"></person-search>
                 <person-detail *ngIf="t.template === 'item'" [item]="t.item"></person-detail>
