@@ -1,5 +1,6 @@
 ﻿import { Component } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
+import 'rxjs/rx';
 import { Store } from '@ngrx/store';
 import { Tab } from '../app-shared/tabset/tab.model';
 import { Location, LocationHolder } from './location.model';

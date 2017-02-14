@@ -2,17 +2,18 @@
 import { combineReducers } from '@ngrx/store';
 import * as person from './person/person.store';
 import * as location from './location/location.store';
+import * as trip from './trip/trip.store';
 
 export interface AppState {
     person: person.PersonState,
-    location: location.LocationState
-    //TODO: reference other state stores here: Trip
+    location: location.LocationState,
+    trip: trip.TripState
 }
 
 const reducers = {
     person: person.PersonReducer,
-    location: location.LocationReducer
-    //TODO: reference other state reducers here: Trip
+    location: location.LocationReducer,
+    trip: trip.TripReducer
 }
 
 const productionReducer: ActionReducer<AppState> = combineReducers(reducers);
