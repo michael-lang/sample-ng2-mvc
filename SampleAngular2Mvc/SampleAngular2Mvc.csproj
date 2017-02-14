@@ -250,6 +250,7 @@
     <Content Include="app\app.scss" />
     <Content Include="app\location\location.component.scss" />
     <Content Include="app\person\person.component.scss" />
+    <Content Include="app\app-shared\generic-base.md" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
