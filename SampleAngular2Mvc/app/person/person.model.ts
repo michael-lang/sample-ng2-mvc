@@ -5,6 +5,11 @@
     public ContactPhoneNumber: string;
 }
 
+export class PersonHolder {
+    public Person: Person;
+    public PlaceholderId: string;
+}
+
 export class PersonCriteria {
     public term: string;
 }

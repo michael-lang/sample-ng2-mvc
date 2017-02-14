@@ -250,6 +250,7 @@
     <Content Include="app\app.scss" />
     <Content Include="app\location\location.component.scss" />
     <Content Include="app\person\person.component.scss" />
+    <Content Include="app\app-shared\generic-base.md" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -328,6 +329,7 @@
     <TypeScriptCompile Include="app\app-shared\generic-search-results.component.ts" />
     <TypeScriptCompile Include="app\app-shared\generic-search.component.ts" />
     <TypeScriptCompile Include="app\app-shared\generic.service.ts" />
+    <TypeScriptCompile Include="app\app-shared\type-cache.ts" />
     <TypeScriptCompile Include="app\app.constants.ts" />
     <TypeScriptCompile Include="app\app-shared\app-shared.module.ts" />
     <TypeScriptCompile Include="app\app-shared\tabset\tab.model.ts" />
@@ -335,12 +337,14 @@
     <TypeScriptCompile Include="app\app-shared\tabset\tabset.component.ts" />
     <TypeScriptCompile Include="app\app.component.ts" />
     <TypeScriptCompile Include="app\app.module.ts" />
+    <TypeScriptCompile Include="app\app.store.ts" />
     <TypeScriptCompile Include="app\location\detail\location-detail.component.ts" />
     <TypeScriptCompile Include="app\location\location.component.ts" />
     <TypeScriptCompile Include="app\location\location.model.ts" />
     <TypeScriptCompile Include="app\location\location.module.ts" />
     <TypeScriptCompile Include="app\location\location-routing.module.ts" />
     <TypeScriptCompile Include="app\location\location.service.ts" />
+    <TypeScriptCompile Include="app\location\location.store.ts" />
     <TypeScriptCompile Include="app\location\search\location-search-form.component.ts" />
     <TypeScriptCompile Include="app\location\search\location-search-results.component.ts" />
     <TypeScriptCompile Include="app\location\search\location-search.component.ts" />
@@ -350,6 +354,7 @@
     <TypeScriptCompile Include="app\person\person.module.ts" />
     <TypeScriptCompile Include="app\person\person-routing.module.ts" />
     <TypeScriptCompile Include="app\person\person.service.ts" />
+    <TypeScriptCompile Include="app\person\person.store.ts" />
     <TypeScriptCompile Include="app\person\search\person-search-form.component.ts" />
     <TypeScriptCompile Include="app\person\search\person-search-results.component.ts" />
     <TypeScriptCompile Include="app\person\search\person-search.component.ts" />
@@ -357,6 +362,7 @@
     <TypeScriptCompile Include="app\trip\trip.component.ts" />
     <TypeScriptCompile Include="app\trip\trip.model.ts" />
     <TypeScriptCompile Include="app\trip\trip.module.ts" />
+    <TypeScriptCompile Include="app\trip\trip.store.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

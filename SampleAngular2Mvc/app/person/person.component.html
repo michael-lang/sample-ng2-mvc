@@ -1,9 +1,9 @@
 ﻿<div class="panel">
     <div class="panel-body">
-        <app-tabset [tabs]="tabs" [showAddTabButton]="true" (onTabClosing)="closeTab($event)" (onTabAdd)="addTab($event)">
-            <div *ngFor="let t of tabs" class="content" [ngClass]="{'active': t.active}">
-                <person-search *ngIf="t.template === 'search'" (doOpen)="openItem($event)"></person-search>
-                <person-detail *ngIf="t.template === 'item'" [itemId]="t.itemId" (itemSaved)="onItemSaved($event, t)"></person-detail>
+        <app-tabset [tabs]="tabs | async" [showAddTabButton]="true" (onTabClosing)="closeTab($event)" (onTabAdd)="addTab($event)" (onTabActivated)="activateTab($event)">
+            <div *ngFor="let t of tabs | async" class="content" [ngClass]="{'active': t.active}">
+                <person-search *ngIf="t.template === 'search'"></person-search>
+                <person-detail *ngIf="t.template === 'item'" [item]="t.item"></person-detail>
             </div>
         </app-tabset>
     </div>
