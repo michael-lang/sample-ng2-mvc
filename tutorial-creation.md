@@ -1,9 +1,10 @@
 ## How to recreate a similar project
 This project basic setup was inspired by Mithun Pattankar at http://www.mithunvp.com/using-angular-2-asp-net-mvc-5-visual-studio/
- * also see the repo: https://github.com/mithunvp/ng2Mvc5Demo
+Also see the repo: https://github.com/mithunvp/ng2Mvc5Demo
+Mithun's work helped me get a angular2 project started with NPM and Visual Studio.  This sample will build from his work into creating useful Application components.
+
 The C# code structure was influenced by other commercial projects I created using https://github.com/michael-lang/candor-common
 
-Mithun's work helped me get a angular2 project started with NPM and Visual Studio.  This sample will build from his work into creating useful Application components.
 The following instructions document the steps taken to create this project.
 
 ### Step 1 - Create the project
