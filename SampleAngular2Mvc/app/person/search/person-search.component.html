@@ -1,5 +1,5 @@
 <person-search-form (submitFn)="criteriaSubmitted($event);" (resetFn)="criteriaReset($event);"></person-search-form>
-<person-search-results *ngIf="hasResults && !searching" [displayResults]="results" (onItemSelected)="itemSelected($event)"></person-search-results>
-<div *ngIf="searching">
+<person-search-results *ngIf="(hasResults | async) && !(searching | async)" [displayResults]="results | async" (onItemSelected)="itemSelected($event)"></person-search-results>
+<div *ngIf="searching | async">
   <div class="text-center"><span class="glyphicon glyphicon-refresh"> </span></div>
 </div>

@@ -4,7 +4,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
+import { StoreModule } from '@ngrx/store';
 
+import { AppReducer } from './app.store';
 import { AppComponent } from './app.component';
 import { AppChromeModule } from './app-chrome/app-chrome.module';
 import { LocationModule } from './location/location.module';
@@ -20,6 +22,7 @@ import { TripModule } from './trip/trip.module';
         LocationModule,
         PersonModule,
         TripModule,
+        StoreModule.provideStore(AppReducer),
         RouterModule.forRoot([{
             path: '', redirectTo: '/person', pathMatch: 'full'
         }])
