@@ -1,14 +1,21 @@
 # sample-ng2-mvc
 An exploration of a few techniques to create an Angular2 application inside Visual Studio Community (or Pro), leveraging NPM and Gulp.
 
-## Requirements
+## Developer Requirements
 Visual Studio Community edition with Update 3 (14.0.25431.01 or later).
 Open acccess to NPM and NuGet to restore packages.
 
-## Overview
-An application with a tabbed interface per area of interest with search on the first tab, and any opened record appearing on another tab.
+## Project Scope
+This is a basic ride sharing admin application, as a sample showing how to create a similar app with angular.
+This application will start from the admin user side of the interface, with possibly a later addition for a slick end-user search interface.
+
+The admin app has a tabbed interface per area of interest with search on the first tab, and any opened record appearing on another tab.
 Also includes a plus button in the tab row to add a new tab as an item create.
 
+The app consists of planned trips, departure and arrival locations, and people that are driving and have space for others or people that need
+to catch a ride to a destination.  Original conceived of for one off trips, such as a college student coming home over a weekend.
+
+## Technology Overview
 This structure is relatively simple.  This is a SPA (single page app) design.  A menu at the top of the page uses the `RoutingModule` to switch 
 between those logical pages to be shown as current.  The current page content is defined in the main app layout using a `router-outlet`.
 
