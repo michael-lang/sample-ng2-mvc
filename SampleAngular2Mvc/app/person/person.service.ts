@@ -43,10 +43,12 @@ export class PersonService {
         return this._http.post(this.baseUrl + '/', item.Person, { headers: this.headers })
             .map((response: Response) => <Person>response.json())
             .subscribe(result => {
-                item.Person = result;
+                let updated = new PersonHolder();
+                updated.PlaceholderId = item.PlaceholderId;
+                updated.Person = result;
                 isUpdate
-                    ? this._store.dispatch(new PersonUpdateAction(item))
-                    : this._store.dispatch(new PersonInsertAction(item))
+                    ? this._store.dispatch(new PersonUpdateAction(updated))
+                    : this._store.dispatch(new PersonInsertAction(updated))
                 },
                 error => { }, //TODO: call another save failed action??
                 () => { } //on complete
