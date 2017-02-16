@@ -1,8 +1,6 @@
 ﻿import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
-import { Observable } from 'rxjs/Rx';
 import { Store } from '@ngrx/store';
-import { tassign } from 'tassign';
 import { Configuration } from '../app.constants';
 import {
     Person,
@@ -11,7 +9,6 @@ import {
 } from './person.model';
 import { AppState } from '../app.store';
 import {
-    PersonState,
     PersonSearchAction,
     PersonSearchCompleteAction,
     PersonUpdateAction,
@@ -38,14 +35,9 @@ export class PersonService {
             .subscribe(payload =>
                 this._store.dispatch(new PersonSearchCompleteAction(payload)),
                 error => { }, //TODO: call another search failed action??
-                () => { } //on success
+                () => { } //on complete
             );
     }
-    //TODO: convert 'get' into a 'load' request that then adds an open item to the store.
-    //public get(itemId: string): Observable<Person> {
-    //    return this._http.get(this.baseUrl + '/' + itemId)
-    //        .map((response: Response) => <Person>response.json());
-    //}
     public save(item: PersonHolder) {
         let isUpdate = item.Person.PersonId;
         return this._http.post(this.baseUrl + '/', item.Person, { headers: this.headers })
@@ -57,7 +49,7 @@ export class PersonService {
                     : this._store.dispatch(new PersonInsertAction(item))
                 },
                 error => { }, //TODO: call another save failed action??
-                () => { } //on success
+                () => { } //on complete
             );
     }
 }

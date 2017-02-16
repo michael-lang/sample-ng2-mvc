@@ -34,7 +34,7 @@ export class LocationService {
             .subscribe(payload =>
                 this._store.dispatch(new LocationSearchCompleteAction(payload)),
             error => { }, //TODO: call another search failed action??
-            () => { } //on success
+            () => { } //on complete
             );
     }
     public save(item: LocationHolder) {
@@ -48,7 +48,7 @@ export class LocationService {
                     : this._store.dispatch(new LocationInsertAction(item))
             },
             error => { }, //TODO: call another save failed action??
-            () => { } //on success
+            () => { } //on complete
             );
     }
 }
