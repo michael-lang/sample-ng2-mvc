@@ -6,14 +6,17 @@ Visual Studio Community edition with Update 3 (14.0.25431.01 or later).
 Open acccess to NPM and NuGet to restore packages.
 
 ## Project Scope
-This is a basic ride sharing admin application, as a sample showing how to create a similar app with angular.
+This is a basic ride sharing admin application, as a sample showing how to create a similar app with angular.  
 This application will start from the admin user side of the interface, with possibly a later addition for a slick end-user search interface.
 
-The admin app has a tabbed interface per area of interest with search on the first tab, and any opened record appearing on another tab.
+The admin app has a tabbed interface per area of interest with search on the first tab, and any opened record appearing on another tab.  
 Also includes a plus button in the tab row to add a new tab as an item create.
 
-The app consists of planned trips, departure and arrival locations, and people that are driving and have space for others or people that need
-to catch a ride to a destination.  Original conceived of for one off trips, such as a college student coming home over a weekend.
+The app consists of planned trips, departure and arrival locations, and people that are driving and have space for others or people that 
+need to catch a ride to a destination. This is primarily intended of for one off trips, such as a college student coming home over a weekend.  
+Repeat ride-sharing such as for commuting is not the focus; A student may have the same destination each time but on an irregular schedule.
+
+In the end this is meant as a sample application and may be rough around some corners for the sake of keeping the sample less complicated.
 
 ## Technology Overview
 This structure is relatively simple.  This is a SPA (single page app) design.  A menu at the top of the page uses the `RoutingModule` to switch 
