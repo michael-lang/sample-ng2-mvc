@@ -1,13 +1,19 @@
-﻿import { Component } from '@angular/core';
+﻿import { Component, Input, Output, EventEmitter, ViewChild, AfterViewInit } from '@angular/core';
 import { PersonCriteria } from '../person.model';
-import { GenericSearchFormComponent } from '../../app-shared/generic-search-form.component'
+import { NgForm } from '@angular/forms';
 
 @Component({
     selector: 'person-search-form',
     templateUrl: '/dist/js/person/search/person-search-form.component.html',
 })
-export class PersonSearchFormComponent extends GenericSearchFormComponent<PersonCriteria> {
-    public initCriteria(): PersonCriteria {
-        return new PersonCriteria();
+export class PersonSearchFormComponent implements AfterViewInit {
+    @Input() criteria: PersonCriteria;
+    @Output() submitSearch: EventEmitter<PersonCriteria> = new EventEmitter<PersonCriteria>();
+    @Output() resetSearch: EventEmitter<void> = new EventEmitter<void>();
+    @Output() criteriaChange: EventEmitter<PersonCriteria> = new EventEmitter<PersonCriteria>();
+    @ViewChild('ngForm') ngForm: NgForm;
+    
+    ngAfterViewInit() {
+        this.ngForm.form.valueChanges.subscribe(this.criteriaChange);
     }
 }

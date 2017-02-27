@@ -16,6 +16,10 @@
                     main: '/bundles/store.umd.js',
                     defaultExtension: 'js'
                 },
+                //'lodash': {
+                //    main: 'dist/lodash.js', //Why doesn't this one need a leading '/' ?
+                //    defaultExtension: 'js'
+                //},
                 'tassign': {
                     main: '/lib/index.js',
                     defaultExtension: 'js'
@@ -24,6 +28,7 @@
             map: {
                 '@@ngrx/core': '/dist/libs/@@ngrx/core',
                 '@@ngrx/store': '/dist/libs/@@ngrx/store',
+                //'lodash': '/dist/libs/lodash',
                 'tassign': '/dist/libs/tassign',
             }
         });
