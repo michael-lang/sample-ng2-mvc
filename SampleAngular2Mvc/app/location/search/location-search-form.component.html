@@ -1,13 +1,12 @@
-<div class="panel">
+<form id="personSearchForm" #ngForm="ngForm" class="panel" (submit)="submitSearch.emit(ngForm.form.value)" (reset)="resetSearch.emit()">
     <div class="panel-body">
         <div class="form-inline">
             <div class="form-group">
-                <input type="text" class="form-control" [(ngModel)]="criteria.term"
-                       placeholder="Enter name, city or region"
-                       (keyup.enter)="search()">
+                <input type="text" class="form-control" name="term" [ngModel]="criteria.term"
+                       placeholder="Enter name, city or region">
             </div>
-            <button class="btn btn-primary" (click)="search()">Search</button>
-            <button class="btn btn-default" (click)="reset()">Reset</button>
+            <button class="btn btn-primary" type="submit">Search</button>
+            <button class="btn btn-default" type="reset">Reset</button>
         </div>
     </div>
-</div>
+</form>

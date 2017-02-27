@@ -1,5 +1,10 @@
-<location-search-form (submitFn)="criteriaSubmitted($event);" (resetFn)="criteriaReset($event);"></location-search-form>
-<location-search-results *ngIf="(hasResults | async) && !(searching | async)" [displayResults]="results | async" (onItemSelected)="itemSelected($event)"></location-search-results>
-<div *ngIf="searching | async">
+<location-search-form
+  [criteria]="criteria$ | async"
+  (criteriaChange)="criteriaChange($event);"
+  (submitSearch)="criteriaSubmitted($event);"
+  (resetSearch)="criteriaReset($event);">
+</location-search-form>
+<location-search-results *ngIf="hasResults$ | async" [displayResults]="results$ | async" (onItemSelected)="itemSelected($event)"></location-search-results>
+<div *ngIf="(searchStatus$ | async) === 'searching'">
   <div class="text-center"><span class="glyphicon glyphicon-refresh"> </span></div>
 </div>

@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+//import  * as _ from 'lodash';
 import { Location, LocationHolder } from '../location.model';
 import { LocationService } from '../location.service';
 
@@ -8,11 +9,18 @@ import { LocationService } from '../location.service';
     templateUrl: '/dist/js/location/detail/location-detail.component.html',
 })
 export class LocationDetailComponent {
-    @Input() public item: LocationHolder;
+    private _locationHolder: LocationHolder;
+    get locationHolder() { return this._locationHolder; }
+    @Input() set locationHolder(locationHolder: LocationHolder) {
+        this._locationHolder = JSON.parse(JSON.stringify(locationHolder)) //_.cloneDeep(locationHolder);
+    }
+    @Output() saveClicked: EventEmitter<LocationHolder> = new EventEmitter<LocationHolder>();
 
-    constructor(private _itemService: LocationService) { }
+    get location() {
+        return this._locationHolder.Location;
+    }
 
     public save(): void {
-        this._itemService.save(this.item);
+        this.saveClicked.emit(this.locationHolder);
     }
 }

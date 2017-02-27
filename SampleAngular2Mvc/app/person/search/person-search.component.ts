@@ -8,6 +8,7 @@ import { AppState } from '../../app.store';
 import {
     PersonState, SearchStatus,
     PersonSearchAction,
+    PersonSearchResetAction,
     PersonSearchCriteriaChangeAction,
     PersonOpenAction
 } from '../person.store';
@@ -32,7 +33,7 @@ export class PersonSearchComponent {
     }
 
     public criteriaReset(reset: boolean): void {
-        this._store.dispatch(new PersonSearchAction(new PersonCriteria()));
+        this._store.dispatch(new PersonSearchResetAction());
     }
     public criteriaChange(criteria: PersonCriteria): void {
         this._store.dispatch(new PersonSearchCriteriaChangeAction(criteria));
