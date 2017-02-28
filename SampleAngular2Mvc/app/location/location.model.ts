@@ -13,5 +13,5 @@ export class LocationHolder {
 }
 
 export class LocationCriteria {
-    public term: string;
+    public term?: string;
 }

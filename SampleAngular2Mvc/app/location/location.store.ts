@@ -7,6 +7,8 @@ import { type } from '../app-shared/type-cache';
 export const LocationActionTypes = {
     SEARCH: type('[Location] Search'),
     SEARCH_COMPLETE: type('[Location] Search Complete'),
+    SEARCH_RESET: type('[Location] Search Reset'),
+    SEARCH_CRITERIA_CHANGE: type('[Location] Search Criteria Change'),
     OPEN: type('[Location] Open'),
     TAB_ACTIVATE: type('[Location] Tab Activate'),
     CLOSE: type('[Location] Close'),
@@ -14,37 +16,51 @@ export const LocationActionTypes = {
     UPDATE_COMPLETE: type('[Location] Update Complete')
 }
 
+export type SearchStatus = 'ready' | 'searching' | 'empty' | 'complete';
 export interface LocationState {
     criteria: LocationCriteria,
-    isSearching: boolean,
+    searchStatus: SearchStatus;
     results: Location[],
-    hasResults: boolean,
     openList: LocationHolder[],
     activeTabId: string,
     nextNewId: number
 }
 const initialState: LocationState = {
-    criteria: null, isSearching: false, results: [], hasResults: false, openList: [], activeTabId: '', nextNewId: 0
+    criteria: {}, searchStatus: 'ready', results: [], openList: [], activeTabId: '', nextNewId: 0
 };
 
 export function LocationReducer(state = initialState, action: LocationActions): LocationState {
     switch (action.type) {
         case LocationActionTypes.SEARCH:
+            let searchAction = <LocationSearchAction>action;
             return tassign(state, {
-                criteria: <LocationCriteria>action.payload,
-                isSearching: true,
-                results: null,
-                hasResults: false
+                criteria: searchAction.payload || {},
+                searchStatus: 'searching',
+                results: null
             });
         case LocationActionTypes.SEARCH_COMPLETE:
+            let completeAction = <LocationSearchCompleteAction>action;
             return tassign(state, {
-                isSearching: false,
-                results: <Location[]>action.payload,
-                hasResults: action.payload && (<Location[]>action.payload).length > 0
+                searchStatus: completeAction.payload.length > 0 ? 'complete' : 'empty',
+                results: completeAction.payload
             });
+        case LocationActionTypes.SEARCH_CRITERIA_CHANGE: {
+            let changeAction = <LocationSearchCriteriaChangeAction>action;
+            return tassign(state, {
+                criteria: changeAction.payload || {}
+            });
+        }
+        case LocationActionTypes.SEARCH_RESET: {
+            return tassign(state, {
+                criteria: {},
+                searchStatus: 'ready',
+                results: []
+            });
+        }
         case LocationActionTypes.OPEN:
+            let openAction = <LocationOpenAction>action;
             let oholder = new LocationHolder();
-            oholder.Location = (<Location>action.payload) || new Location();
+            oholder.Location = openAction.payload || new Location();
             if (oholder.Location.LocationId && oholder.Location.LocationId.length > 0) {
                 oholder.PlaceholderId = oholder.Location.LocationId;
                 var openFilter = state.openList.filter(x => x.Location.LocationId === oholder.Location.LocationId);
@@ -63,30 +79,33 @@ export function LocationReducer(state = initialState, action: LocationActions): 
                 nextNewId: state.nextNewId + 1
             });
         case LocationActionTypes.TAB_ACTIVATE:
+            let activateAction = <LocationTabActivateAction>action;
             return tassign(state, {
-                activeTabId: action.payload
+                activeTabId: activateAction.payload
             });
         case LocationActionTypes.CLOSE:
+            let closeAction = <LocationCloseAction>action;
             return tassign(state, {
-                openList: state.openList.filter(x => x.PlaceholderId !== (<string>action.payload)),
-                activeTabId: state.activeTabId !== action.payload ? state.activeTabId
-                    : state.openList.length > 0 && state.openList[0].PlaceholderId !== action.payload
+                openList: state.openList.filter(x => x.PlaceholderId !== closeAction.payload),
+                activeTabId: state.activeTabId !== closeAction.payload ? state.activeTabId
+                    : state.openList.length > 0 && state.openList[0].PlaceholderId !== closeAction.payload
                         ? state.openList[0].PlaceholderId
                         : ''
             });
         case LocationActionTypes.INSERT_COMPLETE:
-            let iholder = (<LocationHolder>action.payload);
-            let oldId = iholder.PlaceholderId;
-            iholder.PlaceholderId = iholder.Location.LocationId;
+            let insertAction = <LocationInsertAction>action;
+            let oldId = insertAction.payload.PlaceholderId;
+            insertAction.payload.PlaceholderId = insertAction.payload.Location.LocationId;
             return tassign(state, {
-                results: [iholder.Location].concat(state.results), //add to top
-                openList: state.openList.map(i => i.PlaceholderId === oldId ? iholder : i)
+                results: [insertAction.payload.Location].concat(state.results), //add to top
+                openList: state.openList.map(i => i.PlaceholderId === oldId ? insertAction.payload : i)
+                //TODO: if this was the active tab, the tab id is being updated, so the 'activeTabId' should update to match
             });
         case LocationActionTypes.UPDATE_COMPLETE:
-            let uholder = (<LocationHolder>action.payload);
+            let updateAction = <LocationUpdateAction>action;
             return tassign(state, {
-                results: state.results.map(existing => existing.LocationId === uholder.Location.LocationId ? uholder.Location : existing),
-                openList: state.openList.map(i => i.PlaceholderId === uholder.PlaceholderId ? uholder : i)
+                results: state.results.map(existing => existing.LocationId === updateAction.payload.Location.LocationId ? updateAction.payload.Location : existing),
+                openList: state.openList.map(i => i.PlaceholderId === updateAction.payload.PlaceholderId ? updateAction.payload : i)
             });
         default:
             return state;
@@ -104,6 +123,17 @@ export class LocationSearchCompleteAction implements Action {
 
     constructor(public payload: Location[]) { }
 }
+
+export class LocationSearchCriteriaChangeAction implements Action {
+    type = LocationActionTypes.SEARCH_CRITERIA_CHANGE;
+    constructor(public payload: LocationCriteria) { }
+}
+
+export class LocationSearchResetAction implements Action {
+    type = LocationActionTypes.SEARCH_RESET;
+    constructor() { }
+}
+
 
 export class LocationOpenAction implements Action {
     type = LocationActionTypes.OPEN;
@@ -138,6 +168,8 @@ export class LocationUpdateAction implements Action {
 export type LocationActions
     = LocationSearchAction
     | LocationSearchCompleteAction
+    | LocationSearchCriteriaChangeAction
+    | LocationSearchResetAction
     | LocationOpenAction
     | LocationTabActivateAction
     | LocationCloseAction

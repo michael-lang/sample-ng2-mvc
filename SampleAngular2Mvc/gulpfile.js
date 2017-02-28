@@ -27,6 +27,7 @@ gulp.task("dist-libs", () => {
             '@angular/**',
             '@ngrx/**',
             'tassign/**',
+            'lodash/**',
             'jquery/dist/jquery.*js'
     ], {
         cwd: "node_modules/**"

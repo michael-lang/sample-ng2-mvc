@@ -11,5 +11,5 @@ export class PersonHolder {
 }
 
 export class PersonCriteria {
-    public term: string;
+    public term?: string;
 }
