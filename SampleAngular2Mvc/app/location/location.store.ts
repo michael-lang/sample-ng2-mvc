@@ -78,10 +78,10 @@ export class LocationOpenAction implements Action {
     static reduce(state: LocationState, action: LocationOpenAction) {
         let oholder = new LocationHolder();
         oholder.Location = action.payload || new Location();
-        if (oholder.Location.LocationId && oholder.Location.LocationId.length > 0) {
+        oholder.isNew = !(oholder.Location.LocationId && oholder.Location.LocationId.length > 0);
+        if (!oholder.isNew) {
             oholder.PlaceholderId = oholder.Location.LocationId;
-            var openFilter = state.openList.filter(x => x.Location.LocationId === oholder.Location.LocationId);
-            if (openFilter.length > 0) {
+            if (state.openList.some(x => x.PlaceholderId === oholder.Location.LocationId)) {
                 return tassign(state, {
                     activeTabId: oholder.PlaceholderId,
                 });
@@ -91,7 +91,7 @@ export class LocationOpenAction implements Action {
         }
 
         return tassign(state, {
-            openList: state.openList.concat([oholder]),
+            openList: [...state.openList, oholder],
             activeTabId: oholder.PlaceholderId,
             nextNewId: state.nextNewId + 1
         });
@@ -118,10 +118,7 @@ export class LocationCloseAction implements Action {
     static reduce(state: LocationState, action: LocationCloseAction) {
         return tassign(state, {
             openList: state.openList.filter(x => x.PlaceholderId !== action.payload),
-            activeTabId: state.activeTabId !== action.payload ? state.activeTabId
-                : state.openList.length > 0 && state.openList[0].PlaceholderId !== action.payload
-                    ? state.openList[0].PlaceholderId
-                    : ''
+            activeTabId: state.activeTabId === action.payload ? '' : state.activeTabId
         });
     }
 }
@@ -133,11 +130,15 @@ export class LocationInsertAction implements Action {
     static type: string = type('[Location] Insert Complete');
     static reduce(state: LocationState, action: LocationInsertAction) {
         let oldId = action.payload.PlaceholderId;
+        let holder = new LocationHolder();
+        holder.Location = action.payload.Location;
+        holder.PlaceholderId = action.payload.Location.LocationId;
+        holder.isNew = false;
         action.payload.PlaceholderId = action.payload.Location.LocationId;
         return tassign(state, {
             results: [action.payload.Location].concat(state.results), //add to top
-            openList: state.openList.map(i => i.PlaceholderId === oldId ? action.payload : i)
-            //TODO: if this was the active tab, the tab id is being updated, so the 'activeTabId' should update to match
+            openList: state.openList.map(i => i.PlaceholderId === oldId ? holder : i),
+            activeTabId: state.activeTabId === oldId ? holder.PlaceholderId : state.activeTabId
         });
     }
 }
@@ -148,9 +149,12 @@ export class LocationUpdateAction implements Action {
 
     static type: string = type('[Location] Update Complete');
     static reduce(state: LocationState, action: LocationUpdateAction) {
+        let holder = action.payload;
         return tassign(state, {
-            results: state.results.map(existing => existing.LocationId === action.payload.Location.LocationId ? action.payload.Location : existing),
-            openList: state.openList.map(i => i.PlaceholderId === action.payload.PlaceholderId ? action.payload : i)
+            results: state.results.map(existing =>
+                (!holder.isNew && (existing.LocationId === holder.Location.LocationId))
+                    ? holder.Location : existing),
+            openList: state.openList.map(i => i.PlaceholderId === holder.PlaceholderId ? holder : i)
         });
     }
 }

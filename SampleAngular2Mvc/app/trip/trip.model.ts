@@ -12,6 +12,7 @@
 export class TripHolder {
     public Trip: Trip;
     public PlaceholderId: string;
+    public isNew: boolean;
 }
 
 export class TripCriteria {

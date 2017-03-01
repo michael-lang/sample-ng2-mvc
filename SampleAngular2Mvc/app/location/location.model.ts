@@ -10,6 +10,7 @@
 export class LocationHolder {
     public Location: Location;
     public PlaceholderId: string;
+    public isNew: boolean;
 }
 
 export class LocationCriteria {

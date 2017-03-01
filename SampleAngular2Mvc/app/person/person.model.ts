@@ -8,6 +8,7 @@
 export class PersonHolder {
     public Person: Person;
     public PlaceholderId: string;
+    public isNew: boolean;
 }
 
 export class PersonCriteria {

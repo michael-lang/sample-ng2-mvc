@@ -78,10 +78,10 @@ export class TripOpenAction implements Action {
     static reduce(state: TripState, action: TripOpenAction) {
         let oholder = new TripHolder();
         oholder.Trip = action.payload || new Trip();
-        if (oholder.Trip.TripId && oholder.Trip.TripId.length > 0) {
+        oholder.isNew = !(oholder.Trip.TripId && oholder.Trip.TripId.length > 0);
+        if (!oholder.isNew) {
             oholder.PlaceholderId = oholder.Trip.TripId;
-            var openFilter = state.openList.filter(x => x.Trip.TripId === oholder.Trip.TripId);
-            if (openFilter.length > 0) {
+            if (state.openList.some(x => x.Trip.TripId === oholder.Trip.TripId)) {
                 return tassign(state, {
                     activeTabId: oholder.PlaceholderId,
                 });
@@ -91,7 +91,7 @@ export class TripOpenAction implements Action {
         }
 
         return tassign(state, {
-            openList: state.openList.concat([oholder]),
+            openList: [...state.openList, oholder],
             activeTabId: oholder.PlaceholderId,
             nextNewId: state.nextNewId + 1
         });
@@ -118,10 +118,7 @@ export class TripCloseAction implements Action {
     static reduce(state: TripState, action: TripCloseAction) {
         return tassign(state, {
             openList: state.openList.filter(x => x.PlaceholderId !== action.payload),
-            activeTabId: state.activeTabId !== action.payload ? state.activeTabId
-                : state.openList.length > 0 && state.openList[0].PlaceholderId !== action.payload
-                    ? state.openList[0].PlaceholderId
-                    : ''
+            activeTabId: state.activeTabId === action.payload ? '' : state.activeTabId
         });
     }
 }
@@ -133,11 +130,15 @@ export class TripInsertAction implements Action {
     static type: string = type('[Trip] Insert Complete');
     static reduce(state: TripState, action: TripInsertAction) {
         let oldId = action.payload.PlaceholderId;
+        let holder = new TripHolder();
+        holder.Trip = action.payload.Trip;
+        holder.PlaceholderId = action.payload.Trip.TripId;
+        holder.isNew = false;
         action.payload.PlaceholderId = action.payload.Trip.TripId;
         return tassign(state, {
             results: [action.payload.Trip].concat(state.results), //add to top
-            openList: state.openList.map(i => i.PlaceholderId === oldId ? action.payload : i)
-            //TODO: if this was the active tab, the tab id is being updated, so the 'activeTabId' should update to match
+            openList: state.openList.map(i => i.PlaceholderId === oldId ? holder : i),
+            activeTabId: state.activeTabId === oldId ? holder.PlaceholderId : state.activeTabId
         });
     }
 }
@@ -148,9 +149,12 @@ export class TripUpdateAction implements Action {
 
     static type: string = type('[Trip] Update Complete');
     static reduce(state: TripState, action: TripUpdateAction) {
+        let holder = action.payload;
         return tassign(state, {
-            results: state.results.map(existing => existing.TripId === action.payload.Trip.TripId ? action.payload.Trip : existing),
-            openList: state.openList.map(i => i.PlaceholderId === action.payload.PlaceholderId ? action.payload : i)
+            results: state.results.map(existing =>
+                (!holder.isNew && (existing.TripId === holder.Trip.TripId))
+                    ? holder.Trip : existing),
+            openList: state.openList.map(i => i.PlaceholderId === holder.PlaceholderId ? holder : i)
         });
     }
 }
