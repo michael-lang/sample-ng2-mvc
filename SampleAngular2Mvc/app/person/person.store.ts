@@ -123,12 +123,12 @@ export class PersonCloseAction implements Action {
     }
 }
 
-export class PersonInsertAction implements Action {
-    type = PersonInsertAction.type;
+export class PersonInsertCompleteAction implements Action {
+    type = PersonInsertCompleteAction.type;
     constructor(public payload: PersonHolder) { }
     
     static type: string = type('[Person] Insert Complete');
-    static reduce(state: PersonState, action: PersonInsertAction) {
+    static reduce(state: PersonState, action: PersonInsertCompleteAction) {
         let oldId = action.payload.PlaceholderId;
         let holder = new PersonHolder();
         holder.Person = action.payload.Person;
@@ -143,12 +143,12 @@ export class PersonInsertAction implements Action {
     }
 }
 
-export class PersonUpdateAction implements Action {
-    type = PersonUpdateAction.type;
+export class PersonUpdateCompleteAction implements Action {
+    type = PersonUpdateCompleteAction.type;
     constructor(public payload: PersonHolder) { }
     
     static type: string = type('[Person] Update Complete');
-    static reduce(state: PersonState, action: PersonUpdateAction) {
+    static reduce(state: PersonState, action: PersonUpdateCompleteAction) {
         let holder = action.payload;
         return tassign(state, {
             results: state.results.map(existing =>
@@ -167,6 +167,6 @@ export const PersonReducer = buildReducer(initialState,
     PersonOpenAction,
     PersonTabActivateAction,
     PersonCloseAction,
-    PersonInsertAction,
-    PersonUpdateAction
+    PersonInsertCompleteAction,
+    PersonUpdateCompleteAction
 );

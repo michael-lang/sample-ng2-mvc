@@ -123,12 +123,12 @@ export class TripCloseAction implements Action {
     }
 }
 
-export class TripInsertAction implements Action {
-    type = TripInsertAction.type;
+export class TripInsertCompleteAction implements Action {
+    type = TripInsertCompleteAction.type;
     constructor(public payload: TripHolder) { }
 
     static type: string = type('[Trip] Insert Complete');
-    static reduce(state: TripState, action: TripInsertAction) {
+    static reduce(state: TripState, action: TripInsertCompleteAction) {
         let oldId = action.payload.PlaceholderId;
         let holder = new TripHolder();
         holder.Trip = action.payload.Trip;
@@ -143,12 +143,12 @@ export class TripInsertAction implements Action {
     }
 }
 
-export class TripUpdateAction implements Action {
-    type = TripUpdateAction.type;
+export class TripUpdateCompleteAction implements Action {
+    type = TripUpdateCompleteAction.type;
     constructor(public payload: TripHolder) { }
 
     static type: string = type('[Trip] Update Complete');
-    static reduce(state: TripState, action: TripUpdateAction) {
+    static reduce(state: TripState, action: TripUpdateCompleteAction) {
         let holder = action.payload;
         return tassign(state, {
             results: state.results.map(existing =>
@@ -167,6 +167,6 @@ export const TripReducer = buildReducer(initialState,
     TripOpenAction,
     TripTabActivateAction,
     TripCloseAction,
-    TripInsertAction,
-    TripUpdateAction
+    TripInsertCompleteAction,
+    TripUpdateCompleteAction
 );

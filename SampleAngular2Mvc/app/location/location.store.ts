@@ -123,12 +123,12 @@ export class LocationCloseAction implements Action {
     }
 }
 
-export class LocationInsertAction implements Action {
-    type = LocationInsertAction.type;
+export class LocationInsertCompleteAction implements Action {
+    type = LocationInsertCompleteAction.type;
     constructor(public payload: LocationHolder) { }
 
     static type: string = type('[Location] Insert Complete');
-    static reduce(state: LocationState, action: LocationInsertAction) {
+    static reduce(state: LocationState, action: LocationInsertCompleteAction) {
         let oldId = action.payload.PlaceholderId;
         let holder = new LocationHolder();
         holder.Location = action.payload.Location;
@@ -143,12 +143,12 @@ export class LocationInsertAction implements Action {
     }
 }
 
-export class LocationUpdateAction implements Action {
-    type = LocationUpdateAction.type;
+export class LocationUpdateCompleteAction implements Action {
+    type = LocationUpdateCompleteAction.type;
     constructor(public payload: LocationHolder) { }
 
     static type: string = type('[Location] Update Complete');
-    static reduce(state: LocationState, action: LocationUpdateAction) {
+    static reduce(state: LocationState, action: LocationUpdateCompleteAction) {
         let holder = action.payload;
         return tassign(state, {
             results: state.results.map(existing =>
@@ -167,6 +167,6 @@ export const LocationReducer = buildReducer(initialState,
     LocationOpenAction,
     LocationTabActivateAction,
     LocationCloseAction,
-    LocationInsertAction,
-    LocationUpdateAction
+    LocationInsertCompleteAction,
+    LocationUpdateCompleteAction
 );

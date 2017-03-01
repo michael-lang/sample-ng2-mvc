@@ -11,8 +11,8 @@ import { AppState } from '../app.store';
 import {
     PersonSearchAction,
     PersonSearchCompleteAction,
-    PersonUpdateAction,
-    PersonInsertAction
+    PersonUpdateCompleteAction,
+    PersonInsertCompleteAction
 } from './person.store';
 
 @Injectable()
@@ -47,8 +47,8 @@ export class PersonService {
                 updated.PlaceholderId = item.PlaceholderId;
                 updated.Person = result;
                 isUpdate
-                    ? this._store.dispatch(new PersonUpdateAction(updated))
-                    : this._store.dispatch(new PersonInsertAction(updated))
+                    ? this._store.dispatch(new PersonUpdateCompleteAction(updated))
+                    : this._store.dispatch(new PersonInsertCompleteAction(updated))
                 },
                 error => { }, //TODO: call another save failed action??
                 () => { } //on complete

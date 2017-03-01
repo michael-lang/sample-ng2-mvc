@@ -10,8 +10,8 @@ import {
     LocationState,
     LocationSearchAction,
     LocationSearchCompleteAction,
-    LocationUpdateAction,
-    LocationInsertAction
+    LocationUpdateCompleteAction,
+    LocationInsertCompleteAction
 } from './location.store';
 
 @Injectable()
@@ -44,8 +44,8 @@ export class LocationService {
             .subscribe(result => {
                 item.Location = result;
                 isUpdate
-                    ? this._store.dispatch(new LocationUpdateAction(item))
-                    : this._store.dispatch(new LocationInsertAction(item))
+                    ? this._store.dispatch(new LocationUpdateCompleteAction(item))
+                    : this._store.dispatch(new LocationInsertCompleteAction(item))
             },
             error => { }, //TODO: call another save failed action??
             () => { } //on complete
