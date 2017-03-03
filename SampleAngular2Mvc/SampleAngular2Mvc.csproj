@@ -349,6 +349,7 @@
     <TypeScriptCompile Include="app\location\search\location-search-results.component.ts" />
     <TypeScriptCompile Include="app\location\search\location-search.component.ts" />
     <TypeScriptCompile Include="app\person\detail\person-detail.component.ts" />
+    <TypeScriptCompile Include="app\person\person-orchestrator.service.ts" />
     <TypeScriptCompile Include="app\person\person.component.ts" />
     <TypeScriptCompile Include="app\person\person.model.ts" />
     <TypeScriptCompile Include="app\person\person.module.ts" />
