@@ -339,6 +339,7 @@
     <TypeScriptCompile Include="app\app.module.ts" />
     <TypeScriptCompile Include="app\app.store.ts" />
     <TypeScriptCompile Include="app\location\detail\location-detail.component.ts" />
+    <TypeScriptCompile Include="app\location\location-orchestrator.service.ts" />
     <TypeScriptCompile Include="app\location\location.component.ts" />
     <TypeScriptCompile Include="app\location\location.model.ts" />
     <TypeScriptCompile Include="app\location\location.module.ts" />

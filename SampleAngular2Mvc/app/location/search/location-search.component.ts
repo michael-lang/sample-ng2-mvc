@@ -1,21 +1,13 @@
 ﻿import { Component, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
 import '@ngrx/core/add/operator/select';
-import { Store } from '@ngrx/store';
-import { Location, LocationHolder, LocationCriteria } from '../location.model';
-import { LocationService } from '../location.service'
-import { AppState } from '../../app.store';
-import {
-    LocationState, SearchStatus,
-    LocationSearchAction,
-    LocationSearchResetAction,
-    LocationSearchCriteriaChangeAction,
-    LocationOpenAction
-} from '../location.store';
+import { Location, LocationCriteria } from '../location.model';
+import { LocationOrchestratorService } from '../location-orchestrator.service'
+import { SearchStatus } from '../location.store';
 
 @Component({
     selector: 'location-search',
-    providers: [LocationService],
+    providers: [LocationOrchestratorService],
     templateUrl: '/dist/js/location/search/location-search.component.html'
 })
 export class LocationSearchComponent {
@@ -24,19 +16,19 @@ export class LocationSearchComponent {
     public hasResults$: Observable<boolean>;
     public results$: Observable<Location[]>;
     @Output() doOpen: EventEmitter<Location> = new EventEmitter();
-    
-    constructor(private _service: LocationService, private _store: Store<AppState>) {
-        this.searchStatus$ = _store.select(x => x.location.searchStatus);
-        this.criteria$ = _store.select((s: AppState) => s.location.criteria);
-        this.hasResults$ = this.searchStatus$.select((s: SearchStatus) => s === 'complete' || s === 'empty');
-        this.results$ = _store.select(x => x.location.results);
+
+    constructor(private _service: LocationOrchestratorService) {
+        this.searchStatus$ = this._service.searchStatus;
+        this.criteria$ = this._service.criteria;
+        this.hasResults$ = this._service.hasResults;
+        this.results$ = this._service.results;
     }
 
     public criteriaReset(reset: boolean): void {
-        this._store.dispatch(new LocationSearchResetAction());
+        this._service.resetSearch();
     }
     public criteriaChange(criteria: LocationCriteria): void {
-        this._store.dispatch(new LocationSearchCriteriaChangeAction(criteria));
+        this._service.changeSearch(criteria);
     }
     public criteriaSubmitted(criteria: LocationCriteria): void {
         this._service.search(criteria);
