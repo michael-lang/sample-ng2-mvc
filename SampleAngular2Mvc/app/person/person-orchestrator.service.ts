@@ -22,7 +22,9 @@ import {
  */
 @Injectable()
 export class PersonOrchestratorService {
-    constructor(private _store: Store<AppState>, private _itemService: PersonService) { }
+    constructor(private _store: Store<AppState>, private _itemService: PersonService) {
+        this._store.select((s: AppState) => s.person.criteria).subscribe(x => console.log("criteria:", x));
+    }
     
     get criteria(): Observable<PersonCriteria> {
         return this._store.select((s: AppState) => s.person.criteria);
@@ -35,6 +37,15 @@ export class PersonOrchestratorService {
     }
     get results(): Observable<Person[]> {
         return this._store.select((s: AppState) => s.person.results);
+    }
+    get resultsCopy(): Observable<Person[]> {
+        //if (!this.results) { return this.results; }
+        return this.results
+            .map(obs => {
+                //This is needed because the ngrx-datatable modifies the result to add an $$index to each result item and modifies the source array order when sorting
+                return obs == null ? obs
+                    : obs.map(v => JSON.parse(JSON.stringify(v))); //TODO: convert to use lodash deep clone
+            });
     }
     get openList(): Observable<PersonHolder[]> {
         return this._store.select((s: AppState) => s.person.openList);
@@ -98,7 +109,7 @@ export class PersonOrchestratorService {
     }
 
     public open(person: Person) {
-        this._store.dispatch(new PersonOpenAction(person));
+        this._store.dispatch(new PersonOpenAction(JSON.parse(JSON.stringify(person))));
     }
 
     public save(vh: PersonHolder) {

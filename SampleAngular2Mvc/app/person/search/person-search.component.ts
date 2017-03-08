@@ -21,7 +21,7 @@ export class PersonSearchComponent {
         this.searchStatus$ = this._service.searchStatus;
         this.criteria$ = this._service.criteria;
         this.hasResults$ = this._service.hasResults;
-        this.results$ = this._service.results;
+        this.results$ = this._service.resultsCopy;
     }
 
     public criteriaReset(reset: boolean): void {

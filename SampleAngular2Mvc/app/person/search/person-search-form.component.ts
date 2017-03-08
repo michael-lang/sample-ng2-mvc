@@ -14,6 +14,6 @@ export class PersonSearchFormComponent implements AfterViewInit {
     @ViewChild('ngForm') ngForm: NgForm;
     
     ngAfterViewInit() {
-        this.ngForm.form.valueChanges.subscribe(this.criteriaChange);
+        this.ngForm.form.valueChanges.debounceTime(50).subscribe(this.criteriaChange);
     }
 }
