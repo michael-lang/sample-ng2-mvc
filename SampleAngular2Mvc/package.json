@@ -18,9 +18,11 @@
     "@ngrx/core": "^1.0.0",
     "@ngrx/db": "^2.0.0",
     "@ngrx/store": "^2.0.0",
+    "@swimlane/ngx-datatable": "^6.3.0",
     "core-js": "^2.4.1",
     "reflect-metadata": "^0.1.9",
     "rxjs": "^5.0.3",
+    "ngrx-store-freeze": "^0.1.9",
     "systemjs": "^0.20.0",
     "tassign": "1.0.0",
     "zone.js": "^0.7.6"

@@ -26,6 +26,9 @@ gulp.task("dist-libs", () => {
             'zone.js/dist/**',
             '@angular/**',
             '@ngrx/**',
+            'deep-freeze-strict/**',
+            'ngrx-store-freeze/**',
+            '@swimlane/ngx-datatable/release/**',
             'tassign/**',
             'lodash/**',
             'jquery/dist/jquery.*js'

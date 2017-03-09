@@ -251,6 +251,7 @@
     <Content Include="app\location\location.component.scss" />
     <Content Include="app\person\person.component.scss" />
     <Content Include="app\app-shared\generic-base.md" />
+    <Content Include="app\app-shared\datatable\themes\bootstrap.scss" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -338,7 +339,10 @@
     <TypeScriptCompile Include="app\app.component.ts" />
     <TypeScriptCompile Include="app\app.module.ts" />
     <TypeScriptCompile Include="app\app.store.ts" />
+    <TypeScriptCompile Include="app\environments\environment.prod.ts" />
+    <TypeScriptCompile Include="app\environments\environment.ts" />
     <TypeScriptCompile Include="app\location\detail\location-detail.component.ts" />
+    <TypeScriptCompile Include="app\location\location-orchestrator.service.ts" />
     <TypeScriptCompile Include="app\location\location.component.ts" />
     <TypeScriptCompile Include="app\location\location.model.ts" />
     <TypeScriptCompile Include="app\location\location.module.ts" />
@@ -349,6 +353,7 @@
     <TypeScriptCompile Include="app\location\search\location-search-results.component.ts" />
     <TypeScriptCompile Include="app\location\search\location-search.component.ts" />
     <TypeScriptCompile Include="app\person\detail\person-detail.component.ts" />
+    <TypeScriptCompile Include="app\person\person-orchestrator.service.ts" />
     <TypeScriptCompile Include="app\person\person.component.ts" />
     <TypeScriptCompile Include="app\person\person.model.ts" />
     <TypeScriptCompile Include="app\person\person.module.ts" />
@@ -358,6 +363,7 @@
     <TypeScriptCompile Include="app\person\search\person-search-form.component.ts" />
     <TypeScriptCompile Include="app\person\search\person-search-results.component.ts" />
     <TypeScriptCompile Include="app\person\search\person-search.component.ts" />
+    <TypeScriptCompile Include="app\trip\trip-orchestrator.service.ts" />
     <TypeScriptCompile Include="app\trip\trip-routing.module.ts" />
     <TypeScriptCompile Include="app\trip\trip.component.ts" />
     <TypeScriptCompile Include="app\trip\trip.model.ts" />

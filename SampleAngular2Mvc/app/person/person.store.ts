@@ -78,10 +78,10 @@ export class PersonOpenAction implements Action {
     static reduce(state: PersonState, action: PersonOpenAction) {
         let oholder = new PersonHolder();
         oholder.Person = action.payload || new Person();
-        if (oholder.Person.PersonId && oholder.Person.PersonId.length > 0) {
+        oholder.isNew = !(oholder.Person.PersonId && oholder.Person.PersonId.length > 0);
+        if (!oholder.isNew) {
             oholder.PlaceholderId = oholder.Person.PersonId;
-            var openFilter = state.openList.filter(x => x.Person.PersonId === oholder.Person.PersonId);
-            if (openFilter.length > 0) {
+            if (state.openList.some(x => x.Person.PersonId === oholder.Person.PersonId)) {
                 return tassign(state, {
                     activeTabId: oholder.PlaceholderId,
                 });
@@ -91,7 +91,7 @@ export class PersonOpenAction implements Action {
         }
 
         return tassign(state, {
-            openList: state.openList.concat([oholder]),
+            openList: [...state.openList, oholder],
             activeTabId: oholder.PlaceholderId,
             nextNewId: state.nextNewId + 1
         });
@@ -118,39 +118,43 @@ export class PersonCloseAction implements Action {
     static reduce(state: PersonState, action: PersonCloseAction) {
         return tassign(state, {
             openList: state.openList.filter(x => x.PlaceholderId !== action.payload),
-            activeTabId: state.activeTabId !== action.payload ? state.activeTabId
-                : state.openList.length > 0 && state.openList[0].PlaceholderId !== action.payload
-                    ? state.openList[0].PlaceholderId
-                    : ''
+            activeTabId: state.activeTabId === action.payload ? '' : state.activeTabId
         });
     }
 }
 
-export class PersonInsertAction implements Action {
-    type = PersonInsertAction.type;
+export class PersonInsertCompleteAction implements Action {
+    type = PersonInsertCompleteAction.type;
     constructor(public payload: PersonHolder) { }
     
     static type: string = type('[Person] Insert Complete');
-    static reduce(state: PersonState, action: PersonInsertAction) {
+    static reduce(state: PersonState, action: PersonInsertCompleteAction) {
         let oldId = action.payload.PlaceholderId;
+        let holder = new PersonHolder();
+        holder.Person = action.payload.Person;
+        holder.PlaceholderId = action.payload.Person.PersonId;
+        holder.isNew = false;
         action.payload.PlaceholderId = action.payload.Person.PersonId;
         return tassign(state, {
             results: [action.payload.Person].concat(state.results), //add to top
-            openList: state.openList.map(i => i.PlaceholderId === oldId ? action.payload : i)
-            //TODO: if this was the active tab, the tab id is being updated, so the 'activeTabId' should update to match
+            openList: state.openList.map(i => i.PlaceholderId === oldId ? holder : i),
+            activeTabId: state.activeTabId === oldId ? holder.PlaceholderId : state.activeTabId
         });
     }
 }
 
-export class PersonUpdateAction implements Action {
-    type = PersonUpdateAction.type;
+export class PersonUpdateCompleteAction implements Action {
+    type = PersonUpdateCompleteAction.type;
     constructor(public payload: PersonHolder) { }
     
     static type: string = type('[Person] Update Complete');
-    static reduce(state: PersonState, action: PersonUpdateAction) {
+    static reduce(state: PersonState, action: PersonUpdateCompleteAction) {
+        let holder = action.payload;
         return tassign(state, {
-            results: state.results.map(existing => existing.PersonId === action.payload.Person.PersonId ? action.payload.Person : existing),
-            openList: state.openList.map(i => i.PlaceholderId === action.payload.PlaceholderId ? action.payload : i)
+            results: state.results.map(existing =>
+                (!holder.isNew && (existing.PersonId === holder.Person.PersonId))
+                    ? holder.Person : existing),
+            openList: state.openList.map(i => i.PlaceholderId === holder.PlaceholderId ? holder : i)
         });
     }
 }
@@ -163,6 +167,6 @@ export const PersonReducer = buildReducer(initialState,
     PersonOpenAction,
     PersonTabActivateAction,
     PersonCloseAction,
-    PersonInsertAction,
-    PersonUpdateAction
+    PersonInsertCompleteAction,
+    PersonUpdateCompleteAction
 );

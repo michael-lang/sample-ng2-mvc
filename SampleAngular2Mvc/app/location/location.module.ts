@@ -11,6 +11,7 @@ import { LocationSearchResultsComponent } from './search/location-search-results
 import { LocationSearchFormComponent } from './search/location-search-form.component';
 import { LocationDetailComponent } from './detail/location-detail.component';
 import { LocationService } from './location.service';
+import { LocationOrchestratorService } from './location-orchestrator.service';
 
 @NgModule({
     imports: [
@@ -19,7 +20,7 @@ import { LocationService } from './location.service';
         LocationRoutingModule,
         AppSharedModule
     ],
-    providers: [Configuration, LocationService],
+    providers: [Configuration, LocationService, LocationOrchestratorService],
     exports: [LocationComponent,
         LocationSearchComponent,
         LocationSearchResultsComponent,

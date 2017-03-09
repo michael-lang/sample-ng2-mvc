@@ -11,6 +11,7 @@ import { PersonSearchResultsComponent } from './search/person-search-results.com
 import { PersonSearchFormComponent } from './search/person-search-form.component';
 import { PersonDetailComponent } from './detail/person-detail.component';
 import { PersonService } from './person.service';
+import { PersonOrchestratorService } from './person-orchestrator.service';
 
 @NgModule({
     imports: [
@@ -19,7 +20,7 @@ import { PersonService } from './person.service';
         PersonRoutingModule,
         AppSharedModule
     ],
-    providers: [Configuration, PersonService],
+    providers: [Configuration, PersonService, PersonOrchestratorService],
     exports: [PersonComponent,
         PersonSearchComponent,
         PersonSearchResultsComponent,

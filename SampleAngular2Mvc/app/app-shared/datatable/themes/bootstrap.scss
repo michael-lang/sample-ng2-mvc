@@ -1,0 +1,467 @@
+﻿@import '../../../../node_modules/@swimlane/ngx-datatable/src/components/datatable.component';
+@import '../../../../Content/bootstrap.css';
+
+$color-white:     #ffffff;
+$color-black:     #000000;
+$color-stripe:    #f9f9f9;
+$color-hover:    #f5f5f5;
+$color-gray-30:   scale_color($color-white, $lightness: -12%); // #e0e0e0
+
+.ngx-datatable.bootstrap {
+	background:#FFF;
+  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 2px 0 rgba(0, 0, 0, 0.24);
+  -moz-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 2px 0 rgba(0, 0, 0, 0.24);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 2px 0 rgba(0, 0, 0, 0.24);
+  margin-bottom: 1.25rem;
+  border: 1px solid $color-gray-30;
+  &.no-border{
+    border: none;
+  }
+	&.table-striped {
+		.datatable-row-odd {
+			background: $color-stripe;
+		}
+	}
+
+  &.single-selection,
+  &.multi-selection,
+  &.multi-click-selection {
+    .datatable-body-row {
+			&.active,
+			&.active .datatable-row-group {
+				background-color: #304FFE;
+        color: $color-white;
+			}
+
+			&.active:hover,
+			&.active:hover .datatable-row-group {
+				background-color: #193AE4;
+        color: $color-white;
+			}
+
+			&.active:focus,
+			&.active:focus .datatable-row-group {
+				background-color: #2041EF;
+        color: $color-white;
+			}
+    }
+  }
+
+  &:not(.cell-selection):not(.no-hover) {
+    .datatable-body-row {
+      &:hover,
+			&:hover .datatable-row-group {
+	      background-color: $color-hover;
+	      transition-property: background;
+	      transition-duration: .3s;
+	      transition-timing-function: linear;
+	    }
+
+			&:focus,
+			&:focus .datatable-row-group {
+				background-color: #ddd;
+			}
+    }
+  }
+
+  &.cell-selection {
+    .datatable-body-cell {
+      &:hover,
+			&:hover .datatable-row-group {
+	      background-color: #eee;
+	      transition-property: background;
+	      transition-duration: .3s;
+	      transition-timing-function: linear;
+	    }
+
+			&:focus,
+			&:focus .datatable-row-group {
+				background-color: #ddd;
+			}
+
+			&.active,
+			&.active .datatable-row-group {
+				background-color: #304FFE;
+        color: $color-white;
+			}
+
+			&.active:hover,
+			&.active:hover .datatable-row-group {
+				background-color: #193AE4;
+        color: $color-white;
+			}
+
+			&.active:focus,
+			&.active:focus .datatable-row-group {
+				background-color: #2041EF;
+        color: $color-white;
+			}
+    }
+  }
+
+	/**
+	 * Shared Styles
+	 */
+	.empty-row{
+		 height:50px;
+		 text-align: left;
+		 padding: .5rem 1.2rem;
+		 vertical-align: top;
+		 border-top: 0;
+	}
+
+	.loading-row{
+		 text-align: left;
+		 padding: .5rem 1.2rem;
+		 vertical-align: top;
+		 border-top: 0;
+	}
+
+	/**
+	 * Global Row Styles
+	 */
+	 .datatable-header,
+	 .datatable-body {
+		 .datatable-row-left {
+			background-color: $color-white;
+			background-position: 100% 0;
+			background-repeat: repeat-y;
+			background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAABCAYAAAD5PA/NAAAAFklEQVQIHWPSkNeSBmJhTQVtbiDNCgASagIIuJX8OgAAAABJRU5ErkJggg==);
+		}
+
+		.datatable-row-right {
+			background-position: 0 0;
+	    background-color: #fff;
+	    background-repeat: repeat-y;
+	    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAABCAYAAAD5PA/NAAAAFklEQVQI12PQkNdi1VTQ5gbSwkAsDQARLAIGtOSFUAAAAABJRU5ErkJggg==);
+		}
+	}
+
+	/**
+	 * Header Styles
+	 */
+	.datatable-header {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+
+    .datatable-header-cell {
+      text-align: left;
+      padding: .5rem 1.2rem .5rem .5rem;
+      font-weight: 500;
+      background: $color-white;
+      color: $color-black;
+      vertical-align: bottom;
+
+      .sort-fullwidth{
+        display:inline-block;
+        width:calc(100% - 10px);
+      }
+      .resize-handle {
+        border: none;
+        visibility: visible;
+        width: 15px;
+        //height: 20px;
+        display: inline-block;
+        overflow: hidden;
+        line-height: 5px;
+        padding: 7px 0px 7px 10px;
+        vertical-align: middle;
+        margin-top: -.7em;
+        margin-right: 0;
+        font-size: 12px;
+        font-family: sans-serif;
+        letter-spacing: 2px;
+        text-shadow: 1px 0 1px #3f4038;
+      }
+      .resize-handle::after {
+        content: '. . . . . . .';
+        white-space: initial;
+      }
+
+      .datatable-header-cell-wrapper {
+        position: relative;
+      }
+
+			&.longpress {
+        .draggable::after {
+          transition: transform 400ms ease, opacity 400ms ease;
+          opacity: .5;
+          transform: scale(1);
+        }
+			}
+
+      .draggable::after {
+        content: " ";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: -30px 0 0 -30px;
+        height: 60px;
+        width: 60px;
+        background: #eee;
+        border-radius: 100%;
+        opacity: 1;
+        filter: none;
+        transform: scale(0);
+        z-index: 9999;
+        pointer-events: none;
+      }
+
+			&.dragging {
+				.resize-handle {
+					border-right: none;
+				}
+			}
+      &.sortable{
+        .sort-btn:before{
+            position: relative;
+            top: 1px;
+            display: inline-block;
+            font-family: 'Glyphicons Halflings';
+            -webkit-font-smoothing: antialiased;
+            font-style: normal;
+            font-weight: normal;
+            line-height: 1;
+        }
+        &.sort-active{
+          &.sort-asc{
+            .sort-btn {              
+              &:before{
+                  content: "\e113";
+              }
+            }
+          }
+          &.sort-desc{
+            .sort-btn {              
+              &:before{
+                  content: "\e114";
+              }
+            }
+          }
+        }
+        //&:not(sort-active){
+        //  .sort-btn{
+        //    @extend .icon;
+        //    @extend .icon-unsorted;
+        //  }
+        //}
+      }
+    }
+
+    .resize-handle {
+      border-right:solid 1px #eee;
+    }
+  }
+
+	/**
+	 * Body Styles
+	 */
+	.datatable-body {
+		.datatable-row-detail {
+			background: #f5f5f5;
+      &.recessed, .recessed{
+        background: -webkit-linear-gradient(top,rgba(96,96,96,.8),rgba(96,96,96,.2) 2%,hsla(0,0%,94%,.2) 18%,hsla(0,0%,94%,.2) 95%,rgba(96,96,96,.2) 98%,rgba(0,0,0,.2));
+        background: linear-gradient(180deg,rgba(96,96,96,.8) 0,rgba(96,96,96,.2) 2%,hsla(0,0%,94%,.2) 18%,hsla(0,0%,94%,.2) 95%,rgba(96,96,96,.2) 98%,rgba(0,0,0,.2));
+        background-color: #fcfcfc;
+        padding: 35px 10px 10px 35px;
+      }
+		}
+
+	  .datatable-body-row {
+      outline:1px solid $color-gray-30;
+
+	    .datatable-body-cell {
+	      text-align: left;
+	      padding: .5rem 1.2rem .5rem .5rem;
+	      vertical-align: top;
+	      border-top: 0;
+
+	      -webkit-transition: width 0.3s ease;
+	      transition: width 0.3s ease;
+
+        // cell active class
+        // &.active {
+        //  background: #0829e0
+        // }
+        .collapse{
+          margin: -.5rem -1.2rem;
+          padding: .5rem 1.2rem;
+          width: 100%;
+          display: inline-block;
+          height: 100%;
+        }
+	    }
+	  }
+
+		.progress-linear {
+		  display: block;
+		  position: relative;
+		  width: 100%;
+		  height: 5px;
+		  padding: 0;
+		  margin: 0;
+      position: absolute;
+
+			.container {
+			  display: block;
+			  position: relative;
+			  overflow: hidden;
+			  width: 100%;
+			  height: 5px;
+			  -webkit-transform: translate(0,0) scale(1,1);
+			  transform: translate(0,0) scale(1,1);
+			  background-color: rgb(170,209,249);
+
+				.bar {
+				  transition: all .2s linear;
+				  -webkit-animation: query .8s infinite cubic-bezier(.39,.575,.565,1);
+				  animation: query .8s infinite cubic-bezier(.39,.575,.565,1);
+
+				  transition: -webkit-transform .2s linear;
+				  transition: transform .2s linear;
+				  background-color: rgb(16,108,200);
+
+				  position: absolute;
+				  left: 0;
+				  top: 0;
+				  bottom: 0;
+				  width: 100%;
+				  height: 5px;
+				}
+			}
+		}
+	}
+
+	/**
+	 * Footer Styles
+	 */
+	.datatable-footer {
+		border-top: 1px solid rgba(0, 0, 0, 0.12);
+		font-size:16px;
+    background: $color-white;
+    color: $color-black;
+    font-weight: 500;
+
+		.page-count{
+			line-height: 50px;
+			height:50px;
+			padding: 0 1.2rem;
+		}
+
+		.datatable-pager {
+			margin: 0 10px;
+	    //line-height: 50px;
+
+			li {
+	    	vertical-align: middle;
+
+				&.disabled a{
+					color:rgba(0, 0, 0, 0.26) !important;
+					background-color: transparent !important;
+				}
+
+				&.active a{
+					background-color: rgba(158,158,158,0.2);
+					font-weight: bold;
+				}
+			}
+
+			a {
+				height: 22px;
+				min-width: 24px;
+				line-height: 22px;
+				padding: 0 6px;
+				border-radius: 3px;
+				margin: 6px 3px;
+				text-align: center;
+				vertical-align: top;
+				color: rgba(0,0,0,.54);
+				text-decoration: none;
+		    vertical-align: bottom;
+
+				&:hover{
+					color: rgba(0,0,0,.75);
+					background-color: rgba(158,158,158,0.2);
+				}
+			}
+
+			.icon-left,
+			.icon-skip,
+			.icon-right,
+			.icon-prev{
+				font-size:20px;
+				line-height: 20px;
+				padding:0 3px;
+			}
+		}
+	}
+}
+
+/**
+ * Checkboxes
+**/
+.datatable-checkbox {
+  position: relative;
+  margin: 0;
+  cursor: pointer;
+  vertical-align: middle;
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 10px 0;
+
+  input[type='checkbox'] {
+    position: relative;
+    margin: 0 1rem 0 0;
+    cursor: pointer;
+    outline:none;
+
+    &:before {
+      -webkit-transition: all 0.3s ease-in-out;
+      -moz-transition: all 0.3s ease-in-out;
+      transition: all 0.3s ease-in-out;
+      content: "";
+      position: absolute;
+      left: 0;
+      z-index: 1;
+      width: 1rem;
+      height: 1rem;
+      border: 2px solid #f2f2f2;
+    }
+
+    &:checked:before {
+      -webkit-transform: rotate(-45deg);
+      -moz-transform: rotate(-45deg);
+      -ms-transform: rotate(-45deg);
+      transform: rotate(-45deg);
+      height: .5rem;
+      border-color: #009688;
+      border-top-style: none;
+      border-right-style: none;
+    }
+
+    &:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 1rem;
+      height: 1rem;
+      background: $color-white;
+      cursor: pointer;
+    }
+  }
+}
+
+/**
+ * Progress bar animations
+ */
+@keyframes query {
+  0% {
+    opacity: 1;
+    transform: translateX(35%) scale(.3, 1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) scale(0, 1);
+  }
+}

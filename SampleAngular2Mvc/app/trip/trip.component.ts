@@ -18,6 +18,8 @@ export class TripComponent {
     activeTabId$: Observable<string>;
     searchTab: Tab;
 
+    //TODO: create as a computed store service: 
+    //  http://onehungrymind.com/handle-multiple-angular-2-models-ngrx-computed-observables/
     constructor(private _store: Store<AppState> /*, private _itemService: TripService*/) {
         this.searchTab = new Tab();
         this.searchTab.id = 'tab-id-search';

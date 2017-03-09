@@ -1,16 +1,32 @@
 <h2>Matching People</h2>
-<table class="table table-hover table-striped">
-  <caption>{{resultCount() + (resultCount() > 1 ? ' people' : ' person')}}</caption>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Phone</th>
-    </tr>
-  </thead>
-  <tbody *ngFor="let p of displayResults" (click)="itemSelected(p)">
-    <tr>
-      <td>{{p.FirstName}} {{p.LastName}}</td>
-      <td>{{p.ContactPhoneNumber}}</td>
-    </tr>
-  </tbody>
-</table>
+<ngx-datatable class="bootstrap table-striped"
+               [rows]="displayResults"
+               [columnMode]="'force'"
+               [headerHeight]="42"
+               [footerHeight]="42"
+               rowHeight="auto">
+    <ngx-datatable-column name="FirstName" sortable="true" prop="FirstName">
+        <template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+            <span (click)="sort()" class="sort-fullwidth">First Name</span>
+        </template>
+        <template let-row="row" ngx-datatable-cell-template>
+            <div (click)="itemSelected(row)" class="clickable">{{row.FirstName}}</div>
+        </template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="LastName" sortable="true" prop="LastName">
+        <template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+            <span (click)="sort()" class="sort-fullwidth">Last Name</span>
+        </template>
+        <template let-row="row" ngx-datatable-cell-template>
+            <div (click)="itemSelected(row)" class="clickable">{{row.LastName}}</div>
+        </template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="ContactPhoneNumber" sortable="true" prop="ContactPhoneNumber" [resizeable]="false">
+        <template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+            <span (click)="sort()" class="sort-fullwidth">Phone Number</span>
+        </template>
+        <template let-row="row" ngx-datatable-cell-template>
+            <div (click)="itemSelected(row)" class="clickable">{{row.ContactPhoneNumber}}</div>
+        </template>
+    </ngx-datatable-column>
+</ngx-datatable>
