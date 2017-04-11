@@ -6,13 +6,23 @@ using System.Web.Mvc;
 
 namespace Candor.Sample.MvcWeb.Controllers
 {
+    [RoutePrefix("")]
     public class HomeController : Controller
     {
+        [Route("")]
         public ActionResult Index()
         {
-            return View();
+            return View("NgApp");
+        }
+        [Route("trip")]
+        [Route("location")]
+        [Route("person")]
+        public ActionResult AppBookmarkableRoutes()
+        {
+            return View("NgApp");
         }
 
+        [Route("about")]
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -20,6 +30,7 @@ namespace Candor.Sample.MvcWeb.Controllers
             return View();
         }
 
+        [Route("contact")]
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
