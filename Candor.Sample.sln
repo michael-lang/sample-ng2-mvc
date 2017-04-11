@@ -3,19 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Candor.Sample", "Candor.Sample.csproj", "{B6CE5B66-BC1A-4C02-95F7-45739A2C7453}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Candor.Sample", "Candor.Sample\Candor.Sample.csproj", "{B6CE5B66-BC1A-4C02-95F7-45739A2C7453}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleAngular2Mvc", "..\SampleAngular2Mvc\SampleAngular2Mvc.csproj", "{0A776B84-0632-4C95-A772-E96AA6619831}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleAngular2Mvc", "SampleAngular2Mvc\SampleAngular2Mvc.csproj", "{0A776B84-0632-4C95-A772-E96AA6619831}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{C8881E7E-B6CC-41D1-A5AE-4A318B9B740A}"
 	ProjectSection(SolutionItems) = preProject
-		..\README.md = ..\README.md
-		..\tutorial-creation.md = ..\tutorial-creation.md
+		README.md = README.md
+		tutorial-creation.md = tutorial-creation.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Candor.Sample.MvcWeb", "..\Candor.Sample.MvcWeb\Candor.Sample.MvcWeb.csproj", "{96129BD4-A14A-4AEE-810A-F33DAF68F57D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Candor.Sample.MvcWeb", "Candor.Sample.MvcWeb\Candor.Sample.MvcWeb.csproj", "{96129BD4-A14A-4AEE-810A-F33DAF68F57D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "candor-sample-ng-cli", "candor-sample-ng-cli\candor-sample-ng-cli.csproj", "{B98BC98B-CBAF-4FA9-BDEC-D45AAD8E3E1B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "candor-sample-ng-cli", "candor-sample-ng-cli\candor-sample-ng-cli.csproj", "{B727EDB0-6520-4416-B7E7-253E4201D729}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +35,10 @@ Global
 		{96129BD4-A14A-4AEE-810A-F33DAF68F57D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96129BD4-A14A-4AEE-810A-F33DAF68F57D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{96129BD4-A14A-4AEE-810A-F33DAF68F57D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B98BC98B-CBAF-4FA9-BDEC-D45AAD8E3E1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B98BC98B-CBAF-4FA9-BDEC-D45AAD8E3E1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B98BC98B-CBAF-4FA9-BDEC-D45AAD8E3E1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B98BC98B-CBAF-4FA9-BDEC-D45AAD8E3E1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B727EDB0-6520-4416-B7E7-253E4201D729}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B727EDB0-6520-4416-B7E7-253E4201D729}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B727EDB0-6520-4416-B7E7-253E4201D729}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B727EDB0-6520-4416-B7E7-253E4201D729}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
