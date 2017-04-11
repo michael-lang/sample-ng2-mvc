@@ -23,7 +23,6 @@ import {
 @Injectable()
 export class PersonOrchestratorService {
     constructor(private _store: Store<AppState>, private _itemService: PersonService) {
-        this._store.select((s: AppState) => s.person.criteria).subscribe(x => console.log("criteria:", x));
     }
     
     get criteria(): Observable<PersonCriteria> {
@@ -112,13 +111,13 @@ export class PersonOrchestratorService {
         this._store.dispatch(new PersonOpenAction(JSON.parse(JSON.stringify(person))));
     }
 
-    public save(vh: PersonHolder) {
-        this._itemService.save(vh.Person)
-            .subscribe((v) => {
-                if (vh.isNew) {
-                    this._store.dispatch(new PersonInsertCompleteAction(tassign(vh, { Person: v })));
+    public save(h: PersonHolder) {
+        this._itemService.save(h.Person)
+            .subscribe((p) => {
+                if (h.isNew) {
+                    this._store.dispatch(new PersonInsertCompleteAction(tassign(h, { Person: p })));
                 } else {
-                    this._store.dispatch(new PersonUpdateCompleteAction(tassign(vh, { Person: v })));
+                    this._store.dispatch(new PersonUpdateCompleteAction(tassign(h, { Person: p })));
                 }
             });
     }
