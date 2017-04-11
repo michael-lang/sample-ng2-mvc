@@ -1,4 +1,5 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild, AfterViewInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 //import  * as _ from 'lodash';
 import { Person, PersonHolder } from '../person.model';
 import { PersonService } from '../person.service';
@@ -9,18 +10,17 @@ import { PersonService } from '../person.service';
     templateUrl: '/dist/js/person/detail/person-detail.component.html',
 })
 export class PersonDetailComponent {
-    private _personHolder: PersonHolder;
-    get personHolder() { return this._personHolder; }
-    @Input() set personHolder(personHolder: PersonHolder) {
-        this._personHolder = JSON.parse(JSON.stringify(personHolder)) //_.cloneDeep(personHolder);
-    }
+    @Input() personHolder: PersonHolder;    
     @Output() saveClicked: EventEmitter<PersonHolder> = new EventEmitter<PersonHolder>();
 
     get person() {
-        return this._personHolder.Person;
+        return this.personHolder.Person;
     }
 
-    public save(): void {
-        this.saveClicked.emit(this.personHolder);
+    save(person: Person) {
+        let v = Object.assign({}, this.personHolder, {
+            Person: Object.assign({}, this.personHolder.Person, person)
+        });
+        this.saveClicked.emit(v);
     }
 }

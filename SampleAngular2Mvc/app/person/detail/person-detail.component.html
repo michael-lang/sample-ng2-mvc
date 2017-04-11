@@ -3,19 +3,21 @@
 </div>
 <div *ngIf="!loading" class="panel">
     <div class="panel-body">
-        <div class="form-horizontal">
+        <form id="personSaveForm" #ngForm="ngForm" class="form-horizontal" (submit)="save(ngForm.form.value)">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>
                             <span>First Name</span>
-                            <input type="text" class="form-control" [(ngModel)]="person.FirstName">
+                            <input type="text" class="form-control" 
+                                   [ngModel]="person.FirstName" name="FirstName">
                         </label>
                     </div>
                     <div class="form-group">
                         <label>
                             <span>Last Name</span>
-                            <input type="text" class="form-control" [(ngModel)]="person.LastName">
+                            <input type="text" class="form-control" 
+                                   [ngModel]="person.LastName" name="LastName">
                         </label>
                     </div>
                 </div>
@@ -23,16 +25,17 @@
                     <div class="form-group">
                         <label>
                             <span>Phone Number</span>
-                            <input type="tel" class="form-control" [(ngModel)]="person.ContactPhoneNumber">
+                            <input type="tel" class="form-control" 
+                                   [ngModel]="person.ContactPhoneNumber" name="ContactPhoneNumber">
                         </label>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-12">
-                    <button class="btn btn-primary" (click)="save()">Save</button>
+                    <button class="btn btn-primary" type="submit">Save</button>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
 </div>
