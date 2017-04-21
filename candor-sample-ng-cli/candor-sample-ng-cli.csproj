@@ -79,6 +79,7 @@
     <Content Include="src\tsconfig.spec.json" />
     <Content Include="tsconfig.json" />
     <Content Include="tslint.json" />
+    <None Include="src\app\app.theme.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -89,11 +90,11 @@
   <ItemGroup>
     <Content Include="karma.conf.js" />
     <Content Include="protractor.conf.js" />
-    <Content Include="src\app\app.component.css" />
+    <None Include="src\app\app.component.scss" />
     <Content Include="src\app\app.component.html" />
     <Content Include="src\favicon.ico" />
     <Content Include="src\index.html" />
-    <Content Include="src\styles.css" />
+    <None Include="src\styles.scss" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
