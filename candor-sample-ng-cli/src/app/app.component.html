@@ -1,14 +1,31 @@
 <div fxLayout="column" fxFlex>
-    <md-toolbar color="primary">
-        <span>{{title}}</span>
-    </md-toolbar>
-
     <md-sidenav-container fxFlex>
-        <md-sidenav mode="side" opened>
-            Sidenav
+        <md-sidenav #mainSideNav mode="side" opened>
+            <md-toolbar>
+                <img src="../assets/logo.png" style="height:80%"> {{appName}}
+            </md-toolbar>
+            <md-nav-list>
+                <a *ngFor="let navItem of mainMenuItems" 
+                   md-list-item
+                   md-ripple
+                   [style.position]="'relative'"
+                   routerLinkActive="selected"
+                   [routerLink]="[navItem.path]">
+                    <!--<md-icon *ngIf="navItem.icon">{{navItem.icon}}</md-icon>-->
+                    <span>{{navItem.title}}</span>
+                </a>
+            </md-nav-list>
         </md-sidenav>
+        <md-toolbar color="primary">
+            <button md-icon-button (click)="mainSideNav.toggle()">
+                <md-icon *ngIf="mainSideNav.opened">chevron_left</md-icon>
+                <md-icon *ngIf="!mainSideNav.opened">menu</md-icon>
+            </button>
+            <!--<md-icon *ngIf="navItem.icon">{{navItem.icon}}</md-icon>-->
+            {{(activeMenuItem$ | async)?.title}}
+        </md-toolbar>
         <div class="content">
             <router-outlet></router-outlet>
         </div>
-    </md-sidenav-container>
+    </md-sidenav-container> 
 </div>

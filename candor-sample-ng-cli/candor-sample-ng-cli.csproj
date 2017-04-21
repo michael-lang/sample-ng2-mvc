@@ -74,12 +74,15 @@
     <Content Include="e2e\tsconfig.e2e.json" />
     <Content Include="package.json" />
     <Content Include="README.md" />
+    <Content Include="src\app\trip\trip-page\trip-page.component.html" />
     <Content Include="src\assets\.gitkeep" />
+    <Content Include="src\assets\logo.png" />
     <Content Include="src\tsconfig.app.json" />
     <Content Include="src\tsconfig.spec.json" />
     <Content Include="tsconfig.json" />
     <Content Include="tslint.json" />
     <None Include="src\app\app.theme.scss" />
+    <Content Include="src\app\trip\trip-page\trip-page.component.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -104,9 +107,14 @@
     <TypeScriptCompile Include="e2e\app.e2e-spec.ts" />
     <TypeScriptCompile Include="e2e\app.po.ts" />
     <TypeScriptCompile Include="src\app\app-routing.module.ts" />
+    <TypeScriptCompile Include="src\app\app-toolbar\app-toolbar.service.spec.ts" />
+    <TypeScriptCompile Include="src\app\app-toolbar\app-toolbar.service.ts" />
     <TypeScriptCompile Include="src\app\app.component.spec.ts" />
     <TypeScriptCompile Include="src\app\app.component.ts" />
     <TypeScriptCompile Include="src\app\app.module.ts" />
+    <TypeScriptCompile Include="src\app\trip\trip-page\trip-page.component.ts" />
+    <TypeScriptCompile Include="src\app\trip\trip-routing.module.ts" />
+    <TypeScriptCompile Include="src\app\trip\trip.module.ts" />
     <TypeScriptCompile Include="src\environments\environment.prod.ts" />
     <TypeScriptCompile Include="src\environments\environment.ts" />
     <TypeScriptCompile Include="src\main.ts" />

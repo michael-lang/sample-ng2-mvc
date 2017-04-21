@@ -26,8 +26,12 @@ import { //only import the portions you will use to optimize build (MaterialModu
 } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
+import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AppToolbarService } from './app-toolbar/app-toolbar.service';
+import { TripModule } from './trip/trip.module';
+import { TripRoutingModule } from './trip/trip-routing.module';
 
 @NgModule({
     declarations: [
@@ -57,9 +61,14 @@ import { AppComponent } from './app.component';
         MdToolbarModule,
         MdTabsModule,
         FlexLayoutModule,
-        AppRoutingModule
+        AppRoutingModule,
+        TripModule,
+        TripRoutingModule,
+        RouterModule.forRoot([{
+            path: '', redirectTo: '/trip', pathMatch: 'full'
+        }])
     ],
-    providers: [],
+    providers: [AppToolbarService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
