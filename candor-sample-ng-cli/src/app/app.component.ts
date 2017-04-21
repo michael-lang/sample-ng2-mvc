@@ -9,6 +9,7 @@ import { AppToolbarService, MenuItem } from './app-toolbar/app-toolbar.service';
 })
 export class AppComponent {
     appName = 'Ride Finder';
+    isDarkTheme = false;
     mainMenuItems;
     activeMenuItem$: Observable<MenuItem>;
 

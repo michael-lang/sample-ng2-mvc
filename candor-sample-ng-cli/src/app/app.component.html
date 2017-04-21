@@ -1,4 +1,4 @@
-<div fxLayout="column" fxFlex>
+<div fxLayout="column" fxFlex  [class.dark-theme]="isDarkTheme">
     <md-sidenav-container fxFlex>
         <md-sidenav #mainSideNav mode="side" opened>
             <md-toolbar>
@@ -23,9 +23,15 @@
             </button>
             <!--<md-icon *ngIf="navItem.icon">{{navItem.icon}}</md-icon>-->
             {{(activeMenuItem$ | async)?.title}}
+            <span fxFlex></span>
+
+            <button md-icon-button [mdMenuTriggerFor]="themeMenu">
+                <md-icon>more_vert</md-icon>
+            </button>
         </md-toolbar>
-        <div class="content">
-            <router-outlet></router-outlet>
-        </div>
+        <router-outlet></router-outlet>
     </md-sidenav-container> 
+    <md-menu #themeMenu x-position="before">
+        <button md-menu-item (click)="isDarkTheme = !isDarkTheme">Toggle Theme</button>
+    </md-menu>
 </div>

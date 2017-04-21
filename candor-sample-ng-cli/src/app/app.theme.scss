@@ -9,3 +9,12 @@ $app-theme: mat-light-theme($app-color-primary, $app-color-accent, $color-app-wa
 @include angular-material-theme($app-theme);
 
 //To add another secondary theme: https://github.com/angular/material2/blob/master/guides/theming.md
+
+.dark-theme {
+  $dark-primary: mat-palette($mat-indigo);
+  $dark-accent: mat-palette($mat-brown);
+
+  $dark-theme: mat-dark-theme($dark-primary, $dark-accent);
+
+  @include angular-material-theme($dark-theme);
+}
