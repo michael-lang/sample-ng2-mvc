@@ -1,4 +1,14 @@
-<h1>
-  {{title}}
-</h1>
-<router-outlet></router-outlet>
+<div fxLayout="column" fxFlex>
+    <md-toolbar color="primary">
+        <span>{{title}}</span>
+    </md-toolbar>
+
+    <md-sidenav-container fxFlex>
+        <md-sidenav mode="side" opened>
+            Sidenav
+        </md-sidenav>
+        <div class="content">
+            <router-outlet></router-outlet>
+        </div>
+    </md-sidenav-container>
+</div>
