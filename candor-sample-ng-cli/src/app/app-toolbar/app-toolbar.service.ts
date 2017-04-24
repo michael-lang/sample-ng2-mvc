@@ -42,19 +42,15 @@ export class AppToolbarService {
 
     private lastRouteWithMenuItem(route: ActivatedRoute): MenuItem {
         let lastMenu = undefined;
-        do {
-            lastMenu = this.extractMenu(route) || lastMenu;
-        } while ((route = route.firstChild));
-
+        do { lastMenu = this.extractMenu(route) || lastMenu; }
+        while ((route = route.firstChild));
         return lastMenu;
     }
     private extractMenu(route: ActivatedRoute): MenuItem {
-        return route.routeConfig && route.routeConfig.data && route.routeConfig.data.title
-            ? {
-                path: route.routeConfig.path,
-                title: route.routeConfig.data.title,
-                icon: route.routeConfig.data.icon
-            } : undefined
+        let cfg = route.routeConfig;
+        return cfg && cfg.data && cfg.data.title
+            ? { path: cfg.path, title: cfg.data.title, icon: cfg.data.icon }
+            : undefined
     }
 }
 
