@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
@@ -14,23 +15,27 @@ export class MenuItem {
 export class AppToolbarService {
     activeMenuItem$: Observable<MenuItem>;
 
-    constructor(private router: Router) {
+    constructor(private router: Router, private titleService: Title) {
         this.activeMenuItem$ = this.router.events
             .filter(e => e instanceof NavigationEnd)
             .map(_ => this.router.routerState.root)
-            .map(route => this.lastRouteWithMenuItem(route.root));
+            .map(route => {
+                let active = this.lastRouteWithMenuItem(route.root);
+                this.titleService.setTitle(active.title);
+                return active;
+            });
     }
     getMenuItems(): MenuItem[] {
         return this.router.config
-            .filter(route => route.data && route.data['toolbarMenu'])
+            .filter(route => route.data && route.data.title)
             .map(route => {
-                if (!route.data['toolbarMenu'].title) {
+                if (!route.data.title) {
                     throw new Error('Missing title for toolbar menu route ' + route.path);
                 }
                 return {
                     path: route.path,
-                    title: route.data['toolbarMenu'].title,
-                    icon: route.data['toolbarMenu'].icon
+                    title: route.data.title,
+                    icon: route.data.icon
                 };
             });
     }
@@ -44,7 +49,12 @@ export class AppToolbarService {
         return lastMenu;
     }
     private extractMenu(route: ActivatedRoute): MenuItem {
-        return route.routeConfig && route.routeConfig.data && route.routeConfig.data['toolbarMenu'];
+        return route.routeConfig && route.routeConfig.data && route.routeConfig.data.title
+            ? {
+                path: route.routeConfig.path,
+                title: route.routeConfig.data.title,
+                icon: route.routeConfig.data.icon
+            } : undefined
     }
 }
 

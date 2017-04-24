@@ -6,10 +6,7 @@ const routes: Routes = [{
     path: 'trip',
     component: TripPageComponent,
     data: {
-        toolbarMenu: {
-            path: 'trip',
-            title: 'Trip Finder'
-        }
+        title: 'Trip Finder'
     }
 }];
 
