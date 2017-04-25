@@ -13,6 +13,8 @@ import { TripModule } from './trip/trip.module';
 import { TripRoutingModule } from './trip/trip-routing.module';
 import { LocationModule } from './location/location.module';
 import { LocationRoutingModule } from './location/location-routing.module';
+import { PersonModule } from './person/person.module';
+import { PersonRoutingModule } from './person/person-routing.module';
 
 import 'hammerjs';
 
@@ -31,6 +33,8 @@ import 'hammerjs';
         TripRoutingModule,
         LocationModule,
         LocationRoutingModule,
+        PersonModule,
+        PersonRoutingModule,
         RouterModule.forRoot([{
             path: '', redirectTo: '/trip', pathMatch: 'full'
         }])
