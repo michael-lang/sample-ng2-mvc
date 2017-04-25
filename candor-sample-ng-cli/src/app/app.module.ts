@@ -11,6 +11,8 @@ import { AppComponent } from './app.component';
 import { AppToolbarService } from './app-toolbar/app-toolbar.service';
 import { TripModule } from './trip/trip.module';
 import { TripRoutingModule } from './trip/trip-routing.module';
+import { LocationModule } from './location/location.module';
+import { LocationRoutingModule } from './location/location-routing.module';
 
 import 'hammerjs';
 
@@ -27,6 +29,8 @@ import 'hammerjs';
         AppRoutingModule,
         TripModule,
         TripRoutingModule,
+        LocationModule,
+        LocationRoutingModule,
         RouterModule.forRoot([{
             path: '', redirectTo: '/trip', pathMatch: 'full'
         }])
