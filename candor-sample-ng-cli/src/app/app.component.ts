@@ -1,10 +1,20 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { AppToolbarService, MenuItem } from './app-toolbar/app-toolbar.service';
 
 @Component({
-  selector: 'app-root',
+  selector: 'body',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'app works!';
+    appName = 'Ride Finder';
+    isDarkTheme = false;
+    mainMenuItems;
+    activeMenuItem$: Observable<MenuItem>;
+
+    constructor(private toolbarService: AppToolbarService) {
+        this.mainMenuItems = this.toolbarService.getMenuItems();
+        this.activeMenuItem$ = this.toolbarService.activeMenuItem$;
+    }
 }
