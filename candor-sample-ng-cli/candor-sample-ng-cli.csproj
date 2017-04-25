@@ -74,11 +74,19 @@
     <Content Include="e2e\tsconfig.e2e.json" />
     <Content Include="package.json" />
     <Content Include="README.md" />
+    <Content Include="src\app\location\location-page\location-page.component.html" />
+    <Content Include="src\app\person\person-page\person-page.component.html" />
+    <Content Include="src\app\trip\trip-page\trip-page.component.html" />
     <Content Include="src\assets\.gitkeep" />
+    <Content Include="src\assets\logo.png" />
     <Content Include="src\tsconfig.app.json" />
     <Content Include="src\tsconfig.spec.json" />
     <Content Include="tsconfig.json" />
     <Content Include="tslint.json" />
+    <None Include="src\app\app.theme.scss" />
+    <Content Include="src\app\trip\trip-page\trip-page.component.scss" />
+    <Content Include="src\app\location\location-page\location-page.component.scss" />
+    <Content Include="src\app\person\person-page\person-page.component.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -89,11 +97,11 @@
   <ItemGroup>
     <Content Include="karma.conf.js" />
     <Content Include="protractor.conf.js" />
-    <Content Include="src\app\app.component.css" />
+    <None Include="src\app\app.component.scss" />
     <Content Include="src\app\app.component.html" />
     <Content Include="src\favicon.ico" />
     <Content Include="src\index.html" />
-    <Content Include="src\styles.css" />
+    <None Include="src\styles.scss" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -102,10 +110,23 @@
   <ItemGroup>
     <TypeScriptCompile Include="e2e\app.e2e-spec.ts" />
     <TypeScriptCompile Include="e2e\app.po.ts" />
+    <TypeScriptCompile Include="src\app\app-common\app-common.module.ts" />
     <TypeScriptCompile Include="src\app\app-routing.module.ts" />
+    <TypeScriptCompile Include="src\app\app-toolbar\app-toolbar.service.spec.ts" />
+    <TypeScriptCompile Include="src\app\app-toolbar\app-toolbar.service.ts" />
     <TypeScriptCompile Include="src\app\app.component.spec.ts" />
     <TypeScriptCompile Include="src\app\app.component.ts" />
     <TypeScriptCompile Include="src\app\app.module.ts" />
+    <TypeScriptCompile Include="src\app\location\location-page\location-page.component.ts" />
+    <TypeScriptCompile Include="src\app\location\location-routing.module.ts" />
+    <TypeScriptCompile Include="src\app\location\location.module.ts" />
+    <TypeScriptCompile Include="src\app\person\person-page\person-page.component.spec.ts" />
+    <TypeScriptCompile Include="src\app\person\person-page\person-page.component.ts" />
+    <TypeScriptCompile Include="src\app\person\person-routing.module.ts" />
+    <TypeScriptCompile Include="src\app\person\person.module.ts" />
+    <TypeScriptCompile Include="src\app\trip\trip-page\trip-page.component.ts" />
+    <TypeScriptCompile Include="src\app\trip\trip-routing.module.ts" />
+    <TypeScriptCompile Include="src\app\trip\trip.module.ts" />
     <TypeScriptCompile Include="src\environments\environment.prod.ts" />
     <TypeScriptCompile Include="src\environments\environment.ts" />
     <TypeScriptCompile Include="src\main.ts" />
