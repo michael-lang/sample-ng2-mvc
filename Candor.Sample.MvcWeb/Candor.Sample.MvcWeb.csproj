@@ -224,9 +224,7 @@
     <PreBuildEvent>echo "cd $(SolutionDir)candor-sample-ng-cli" &amp;&amp;^
 cd "$(SolutionDir)candor-sample-ng-cli" &amp;&amp;^
 echo "building candor-sample-ng-cli" &amp;&amp;^
-ng build &amp;&amp;^
-echo 'copy files' &amp;&amp;^
-xcopy /I /E /Y "$(SolutionDir)candor-sample-ng-cli\dist" "$(ProjectDir)Scripts\NgApp"</PreBuildEvent>
+npm run dist</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
