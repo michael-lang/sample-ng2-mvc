@@ -1,6 +1,11 @@
 # sample-ng2-mvc
 An exploration of a few techniques to create an Angular2 application inside Visual Studio Community (or Pro), leveraging NPM and Gulp.
 
+# Not Ideal for ASP.Net Core!
+For Asp.Net Core 2.1+ project see a better solution on project: https://github.com/NexulAcademy/demo-aspnet-angular
+
+This solution still works for plain ASP.Net MVC projects on the full .Net framework 4.5+
+
 ## Developer Requirements
 Visual Studio Community edition with Update 3 (14.0.25431.01 or later).
 Open acccess to NPM and NuGet to restore packages.
